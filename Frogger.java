@@ -1,10 +1,10 @@
-public class Frogger {
+public class Frog {
     private int x,y;
     private String place;
     private int lives;
     private int dir;
     private static final int FOR = 1, BACK = -1, LEFT = -1, RIGHT = 1;
-    public Frogger() {
+    public Frog() {
         x=0;
         y=0;
         lives=3;
