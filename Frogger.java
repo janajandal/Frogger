@@ -10,7 +10,7 @@ public class Frogger extends JFrame implements ActionListener{
 	public Frogger() {
 		super("Frogger");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setSize(400,500);
+		setSize(450,450);
 
 		myTimer = new Timer(10, this);	 // trigger every 10 ms
 		
@@ -44,7 +44,7 @@ class GamePanel extends JPanel implements KeyListener {
 	public GamePanel(Frogger m) {
 		keys = new boolean[KeyEvent.KEY_LAST+1];
 		mainFrame = m;
-		player = new Frog(200, 250);
+		player = new Frog(0, 0);
 		addKeyListener(this);
 	}
 	
@@ -56,19 +56,19 @@ class GamePanel extends JPanel implements KeyListener {
 	
 	public void move() {
 		if(keys[KeyEvent.VK_UP]){
-			player.verticalMove(-20);
+			player.verticalMove(-1);
 			player.stayStill();
 			keys[KeyEvent.VK_UP] = false;
 		} else if(keys[KeyEvent.VK_DOWN]){
-			player.verticalMove(20);
+			player.verticalMove(1);
 			player.stayStill();
 			keys[KeyEvent.VK_DOWN] = false;
 		} else if(keys[KeyEvent.VK_RIGHT]){
-			player.horizantalMove(20);
+			player.horizantalMove(1);
 			player.stayStill();
 			keys[KeyEvent.VK_RIGHT] = false;
 		} else if(keys[KeyEvent.VK_LEFT]){
-			player.horizantalMove(-20);
+			player.horizantalMove(-1);
 			player.stayStill();
 			keys[KeyEvent.VK_LEFT] = false;
 		}
@@ -87,7 +87,7 @@ class GamePanel extends JPanel implements KeyListener {
     
     public void paint(Graphics g){
 		g.setColor(Color.black);
-		g.fillRect(0,0,400, 500);
+		g.fillRect(0,0,450, 450);
     	player.jump(g);
     }
 }
@@ -127,7 +127,7 @@ class Frog {
 		} else {
 			dir = RIGHT;
 		}
-		x += dist;
+		x += dist*30;
 	}
 	
 	public void verticalMove(int dist) {
@@ -136,7 +136,7 @@ class Frog {
 		} else {
 			dir = DOWN;
 		}
-		y += dist;
+		y += dist*30;
 	}
 	
 	public void stayStill() {
@@ -150,7 +150,7 @@ class Frog {
 	}
 	public void jump(Graphics g){
 		Image sprite = pics[dir][frame];
-		g.drawImage(sprite, x + 30, y, -30, 30, null);
+		g.drawImage(sprite, x, y, 30, 30, null);
 	}
 	
 	public static void delay (long len){
