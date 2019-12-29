@@ -9,9 +9,9 @@ public class Frog {
     private int points;
     private int frame;
     private static final int UP = 0, DOWN = 1, RIGHT = 2, LEFT = 3;
-    public Frog() {
-        x=420;
-        y=450;
+    public Frog(int x,int y) {
+        this.x=x;
+	this.y=y;
         frame = 0;
         lives=3;
         pics = new Image[4][5];
