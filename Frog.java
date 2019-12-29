@@ -24,7 +24,7 @@ public class Frog {
         this.dir = dir;
     }
 
-    public void sidewaysMove(){ //in main we check for button , if button is left we setDir to 1, if down dir=-1, then call sidewaysMove
+    public void horizanatalMove(){ //in main we check for button , if button is left we setDir to 1, if down dir=-1, then call sidewaysMove
         x+=dir;
     }
     public void verticalMove(){ //same concept as sideways move
