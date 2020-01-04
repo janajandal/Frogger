@@ -38,12 +38,6 @@ public class Obstacle {
         return (frog.getX()==x && frog.getY()==y);
     }
 
-    public void obstMove(Graphics g){
-        int w = pics[frame].getWidth(null);
-        int h = pics[frame].getHeight(null);
-        g.drawImage(pics[frame], x + w, y, -w, h, null);
-    }
-
     public static void delay (long len){
         try	{
             Thread.sleep (len);
