@@ -6,7 +6,7 @@ public class Obstacle {
     //pic/type are either going to be ints or pics depending on how we want to code
     private static int x,y,dir,speed,imageNum;
     private static String type;
-    private Image[]pics;
+    private Image pic;
     private int frame;
     private static final int LEFT = -1, RIGHT = 1;
     Random random=new Random();
@@ -25,10 +25,9 @@ public class Obstacle {
         else if(type=="Log"){
             imageNum=5+(random.nextInt(3));
         }
-        for(int i = 0; i<pics.length; i++){
-            Image img = new ImageIcon("Obstacle"+imageNum+".png").getImage();
-            pics[i] = img.getScaledInstance(30,50,Image.SCALE_SMOOTH);
-        }
+        Image img = new ImageIcon("Obstacle"+imageNum+".png").getImage();
+        pic = img.getScaledInstance(30,50,Image.SCALE_SMOOTH);
+
         speed=20*level;
     }
     public static void move(){
