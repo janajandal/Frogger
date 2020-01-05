@@ -40,6 +40,8 @@ class GamePanel extends JPanel implements KeyListener {
     private boolean[]keys;
     private Frogger mainFrame;
     private Frog player;
+    private Obstacle car1;
+
 
     public GamePanel(Frogger m) {
         keys = new boolean[KeyEvent.KEY_LAST+1];
@@ -89,5 +91,6 @@ class GamePanel extends JPanel implements KeyListener {
         g.setColor(Color.black);
         g.fillRect(0,0,400, 500);
         player.jump(g);
+        car1.obstmove(g);
     }
 }

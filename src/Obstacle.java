@@ -33,6 +33,10 @@ public class Obstacle {
     public static void move(){
         x+=speed;
     }
+    public void obstmove(Graphics g){
+        g.drawImage(pic, x + 30, y, -30, 30, null);
+    }
+
     public static boolean collide(Frog frog){
         return (frog.getX()==x && frog.getY()==y);
     }
@@ -42,7 +46,7 @@ public class Obstacle {
             Thread.sleep (len);
         }
         catch (InterruptedException ex)	{
-            System.out.println("I hate when my sleep is iterrupted");
+            System.out.println("I hate when my sleep is interrupted");
         }
     }
 
