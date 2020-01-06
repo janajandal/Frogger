@@ -57,25 +57,29 @@ class GamePanel extends JPanel implements KeyListener {
     }
 
     public void move() {
-        if(keys[KeyEvent.VK_UP]){
-            player.verticalMove(-20);
-            player.stayStill();
-            keys[KeyEvent.VK_UP] = false;
-        } else if(keys[KeyEvent.VK_DOWN]){
-            player.verticalMove(20);
-            player.stayStill();
-            keys[KeyEvent.VK_DOWN] = false;
-        } else if(keys[KeyEvent.VK_RIGHT]){
-            player.horizantalMove(20);
-            player.stayStill();
-            keys[KeyEvent.VK_RIGHT] = false;
-        } else if(keys[KeyEvent.VK_LEFT]){
-            player.horizantalMove(-20);
-            player.stayStill();
-            keys[KeyEvent.VK_LEFT] = false;
-        }
-        player.frogJump();
-    }
+		if(player.getY() == 60) {
+			System.out.println("ribbit");
+			player = new Frog(210, 420);
+		} else if(keys[KeyEvent.VK_UP] && player.getY() > 60){
+			player.verticalMove(-1);
+			player.stayStill();
+			keys[KeyEvent.VK_UP] = false;
+		} else if(keys[KeyEvent.VK_DOWN] && player.getY() < 420){
+			player.verticalMove(1);
+			player.stayStill();
+			keys[KeyEvent.VK_DOWN] = false;
+		} else if(keys[KeyEvent.VK_RIGHT] && player.getX() < 420){
+			player.horizantalMove(1);
+			player.stayStill();
+			keys[KeyEvent.VK_RIGHT] = false;
+		} else if(keys[KeyEvent.VK_LEFT] && player.getX() > 0){
+			player.horizantalMove(-1);
+			player.stayStill();
+			keys[KeyEvent.VK_LEFT] = false;
+		}
+		player.frogJump();
+	}
+
 
     public void keyTyped(KeyEvent e) {}
 
