@@ -7,7 +7,7 @@ public class Frog {
     private int dir;
     private Image[][]pics;
     private int points;
-    private int frame;
+    private double frame;
     private static final int UP = 0, DOWN = 1, RIGHT = 2, LEFT = 3;
     public Frog(int x,int y) {
         this.x=x;
@@ -65,11 +65,12 @@ public class Frog {
         frame = 0;
     }
     public void frogJump(){
-        frame = frame + 1 < pics.length ? frame + 1 : 4;
-        delay(100);
+        frame = frame + 0.2< pics.length ? frame + 0.2: 4;
+
     }
     public void jump (Graphics g){
-        Image sprite = pics[dir][frame];
+
+        Image sprite = pics[dir][(int) Math.round(frame)];
         g.drawImage(sprite, x, y, 30, 30, null);
     }
 
