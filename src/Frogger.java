@@ -40,8 +40,8 @@ class GamePanel extends JPanel implements KeyListener {
     private boolean[]keys;
     private Frogger mainFrame;
     private Frog player;
-    //private Obstacle car1;
-
+    private Obstacle car1;
+    private Obstacle log1;
 
     public GamePanel(Frogger m) {
         keys = new boolean[KeyEvent.KEY_LAST+1];
@@ -57,6 +57,14 @@ class GamePanel extends JPanel implements KeyListener {
     }
 
     public void move() {
+        if(!car1.collide(player)){
+            ;
+        }
+        else if(log1.collide(player)){
+            player.loseLive();
+            player.setX(210);
+            player.setY(420);
+        }
 		if(player.getY() == 60) {
 			System.out.println("ribbit");
 			player.loseLive();

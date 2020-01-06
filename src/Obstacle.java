@@ -41,14 +41,4 @@ public class Obstacle {
         return (frog.getX()==x && frog.getY()==y);
     }
 
-    public static void delay (long len){
-        try	{
-            Thread.sleep (len);
-        }
-        catch (InterruptedException ex)	{
-            System.out.println("I hate when my sleep is interrupted");
-        }
-    }
-
-
 }
