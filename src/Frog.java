@@ -62,7 +62,7 @@ public class Frog {
     }
     public void jump (Graphics g){
         Image sprite = pics[dir][frame];
-        g.drawImage(sprite, x + 30, y, -30, 30, null);
+        g.drawImage(sprite, x, y, 30, 30, null);
     }
 
 
