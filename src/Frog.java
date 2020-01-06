@@ -74,13 +74,5 @@ public class Frog {
         g.drawImage(sprite, x, y, 30, 30, null);
     }
 
-
-    public void delay(int len) {
-        try {
-            Thread.sleep(len);
-        } catch (InterruptedException ex) {
-            System.out.println("I hate when my sleep is interrupted");
-        }
-    }
 }
 
