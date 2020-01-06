@@ -40,7 +40,7 @@ class GamePanel extends JPanel implements KeyListener {
     private boolean[]keys;
     private Frogger mainFrame;
     private Frog player;
-    private Obstacle car1;
+    //private Obstacle car1;
 
 
     public GamePanel(Frogger m) {
@@ -59,7 +59,9 @@ class GamePanel extends JPanel implements KeyListener {
     public void move() {
 		if(player.getY() == 60) {
 			System.out.println("ribbit");
-			player = new Frog(210, 420);
+			player.loseLive();
+			player.setX(210);
+			player.setY(420);
 		} else if(keys[KeyEvent.VK_UP] && player.getY() > 60){
 			player.verticalMove(-1);
 			player.stayStill();
@@ -95,6 +97,6 @@ class GamePanel extends JPanel implements KeyListener {
         g.setColor(Color.black);
         g.fillRect(0,0,400, 500);
         player.jump(g);
-        car1.obstmove(g);
+       // car1.obstmove(g);
     }
 }
