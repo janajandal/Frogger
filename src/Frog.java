@@ -33,6 +33,9 @@ public class Frog {
     public int getX() {
         return x;
     }
+    public void loseLive(){
+        lives--;
+    }
     public void horizantalMove(int dist) {
         if(dist < 0) {
             dir = LEFT;
