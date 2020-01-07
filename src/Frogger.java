@@ -10,7 +10,8 @@ public class Frogger extends JFrame implements ActionListener{
     public Frogger() {
         super("Frogger");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(400,500);
+        setSize(700,700);
+	setPreferredSize(new Dimension(500,550)); //wrong
 
         myTimer = new Timer(10, this);	 // trigger every 10 ms
 
@@ -18,7 +19,7 @@ public class Frogger extends JFrame implements ActionListener{
         add(game);
 
 
-        setPreferredSize(new Dimension(450,450));
+
         setResizable(false);
         setVisible(true);
     }
@@ -44,11 +45,12 @@ class GamePanel extends JPanel implements KeyListener {
     private Frog player;
     private Obstacle car1;
     private Obstacle log1;
+    private Image back = new ImageIcon("back.png").getImage();
 
     public GamePanel(Frogger m) {
         keys = new boolean[KeyEvent.KEY_LAST+1];
         mainFrame = m;
-        player = new Frog(200, 250);
+        player = new Frog(235, 490);
         addKeyListener(this);
     }
 
@@ -59,21 +61,30 @@ class GamePanel extends JPanel implements KeyListener {
     }
 
     public void move() {
+<<<<<<< HEAD
 
+=======
+        if(!car1.collide(player)){
+            ;
+        }
+        else if(log1.collide(player)){
+            player.loseLive();
+            player.setPos(235,490);
+        }
+>>>>>>> master
 		if(player.getY() == 60) {
 			System.out.println("ribbit");
 			player.loseLive();
-			player.setX(210);
-			player.setY(420);
+            player.setPos(210,420);
 		} else if(keys[KeyEvent.VK_UP] && player.getY() > 60){
 			player.verticalMove(-1);
 			player.stayStill();
 			keys[KeyEvent.VK_UP] = false;
-		} else if(keys[KeyEvent.VK_DOWN] && player.getY() < 420){
+		} else if(keys[KeyEvent.VK_DOWN] && player.getY() < 520){
 			player.verticalMove(1);
 			player.stayStill();
 			keys[KeyEvent.VK_DOWN] = false;
-		} else if(keys[KeyEvent.VK_RIGHT] && player.getX() < 420){
+		} else if(keys[KeyEvent.VK_RIGHT] && player.getX() < 520){
 			player.horizantalMove(1);
 			player.stayStill();
 			keys[KeyEvent.VK_RIGHT] = false;
@@ -97,8 +108,9 @@ class GamePanel extends JPanel implements KeyListener {
     }
 
     public void paint(Graphics g){
-        g.setColor(Color.black);
-        g.fillRect(0,0,400, 500);
+        //g.setColor(Color.black);
+        //g.fillRect(0,0,450,390);
+        g.drawImage(back,0,0,500,550,null);
         player.jump(g);
        // car1.obstmove(g);
     }
