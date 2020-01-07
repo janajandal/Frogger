@@ -38,7 +38,7 @@ public class Frog {
     	this.x=x;
     	this.y=y;
     }
-	
+
     public void loseLive(){
         lives--;
     }
@@ -48,7 +48,7 @@ public class Frog {
         } else {
             dir = RIGHT;
         }
-        x += dist*30;
+        x += dist * 30;
     }
 	public void verticalMove(int dist) {
 		if(dist < 0) {
@@ -56,18 +56,18 @@ public class Frog {
 		} else {
 			dir = DOWN;
     }
-		y += dist*30;
+		y += dist * 30;
     }
-	
+
+
     public void stayStill () {
         frame = 0;
     }
     public void frogJump(){
-        frame = frame + 0.2< pics.length ? frame + 0.2: 4;
+        frame = frame + 0.25< pics.length ? frame + 0.25: 4;
 
     }
     public void jump (Graphics g){
-
         Image sprite = pics[dir][(int) Math.round(frame)];
         g.drawImage(sprite, x, y, 30, 30, null);
     }
