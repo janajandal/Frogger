@@ -17,6 +17,8 @@ public class Frogger extends JFrame implements ActionListener{
         game = new GamePanel(this);
         add(game);
 
+
+        setPreferredSize(new Dimension(450,450));
         setResizable(false);
         setVisible(true);
     }
