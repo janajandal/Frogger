@@ -11,7 +11,7 @@ public class Frogger extends JFrame implements ActionListener{
         super("Frogger");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(700,700);
-		setPreferredSize(new Dimension(500,550));
+	setPreferredSize(new Dimension(500,550)); //wrong
 
         myTimer = new Timer(10, this);	 // trigger every 10 ms
 
