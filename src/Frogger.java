@@ -59,14 +59,7 @@ class GamePanel extends JPanel implements KeyListener {
     }
 
     public void move() {
-        if(!car1.collide(player)){
-            ;
-        }
-        else if(log1.collide(player)){
-            player.loseLive();
-            player.setX(210);
-            player.setY(420);
-        }
+
 		if(player.getY() == 60) {
 			System.out.println("ribbit");
 			player.loseLive();

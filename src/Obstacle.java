@@ -33,6 +33,7 @@ public class Obstacle {
     public static void move(){
         x+=speed;
     }
+    p
     public void obstmove(Graphics g){
         g.drawImage(pic, x + 30, y, -30, 30, null);
     }
