@@ -12,7 +12,7 @@ public class Frog {
     public Frog(int x,int y) {
         this.x=x;
         this.y=y;
-        frame = 0;
+        frame = 4;
         lives=3;
         pics = new Image[4][5];
         for(int i = 0; i<pics.length; i++){
@@ -48,7 +48,11 @@ public class Frog {
         } else {
             dir = RIGHT;
         }
+<<<<<<< HEAD
         x += dist * 30;
+=======
+        x += dist*30;
+>>>>>>> master
     }
 	public void verticalMove(int dist) {
 		if(dist < 0) {
@@ -56,9 +60,19 @@ public class Frog {
 		} else {
 			dir = DOWN;
     }
+<<<<<<< HEAD
 		y += dist * 30;
     }
 
+=======
+		y += dist*30;
+    }
+
+    public void setPos(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
+>>>>>>> master
 
     public void stayStill () {
         frame = 0;

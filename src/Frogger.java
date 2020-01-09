@@ -19,7 +19,11 @@ public class Frogger extends JFrame implements ActionListener{
         add(game);
 
 
+<<<<<<< HEAD
 
+=======
+        setPreferredSize(new Dimension(420,464));
+>>>>>>> master
         setResizable(false);
         setVisible(true);
     }
@@ -50,7 +54,11 @@ class GamePanel extends JPanel implements KeyListener {
     public GamePanel(Frogger m) {
         keys = new boolean[KeyEvent.KEY_LAST+1];
         mainFrame = m;
+<<<<<<< HEAD
         player = new Frog(235, 490);
+=======
+        player = new Frog(195, 404);
+>>>>>>> master
         addKeyListener(this);
     }
 
@@ -75,7 +83,11 @@ class GamePanel extends JPanel implements KeyListener {
 		if(player.getY() == 60) {
 			System.out.println("ribbit");
 			player.loseLive();
+<<<<<<< HEAD
             player.setPos(210,420);
+=======
+			player.setPos(210, 420);
+>>>>>>> master
 		} else if(keys[KeyEvent.VK_UP] && player.getY() > 60){
 			player.verticalMove(-1);
 			player.stayStill();
@@ -94,6 +106,10 @@ class GamePanel extends JPanel implements KeyListener {
 			keys[KeyEvent.VK_LEFT] = false;
 		}
 		player.frogJump();
+
+		/*Point mouse = MouseInfo.getPointerInfo().getLocation();
+		Point offset = getLocationOnScreen();
+		System.out.println("("+(mouse.x-offset.x)+", "+(mouse.y-offset.y)+")");*/
 	}
 
 
@@ -108,9 +124,13 @@ class GamePanel extends JPanel implements KeyListener {
     }
 
     public void paint(Graphics g){
+<<<<<<< HEAD
         //g.setColor(Color.black);
         //g.fillRect(0,0,450,390);
         g.drawImage(back,0,0,500,550,null);
+=======
+        g.drawImage(back,0,0,420,464,null);
+>>>>>>> master
         player.jump(g);
        // car1.obstmove(g);
     }
