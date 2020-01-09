@@ -42,7 +42,7 @@ public class Frog {
         } else {
             dir = RIGHT;
         }
-        x += dist;
+        x += dist*30;
     }
 	public void verticalMove(int dist) {
 		if(dist < 0) {
@@ -50,7 +50,7 @@ public class Frog {
 		} else {
 			dir = DOWN;
     }
-		y += dist;
+		y += dist*30;
     }
 
     public void setX(int x) {
