@@ -47,18 +47,16 @@ class GamePanel extends JPanel implements KeyListener {
     private boolean[]keys;
     private Frogger mainFrame;
     private Frog player;
-    private Obstacle car1;
-    private Obstacle log1;
+    private Car car1;
+    private Log log1;
     private Image back = new ImageIcon("back.png").getImage();
 
     public GamePanel(Frogger m) {
         keys = new boolean[KeyEvent.KEY_LAST+1];
         mainFrame = m;
-<<<<<<< HEAD
+
         player = new Frog(235, 490);
-=======
         player = new Frog(195, 404);
->>>>>>> master
         addKeyListener(this);
     }
 
@@ -69,25 +67,12 @@ class GamePanel extends JPanel implements KeyListener {
     }
 
     public void move() {
-<<<<<<< HEAD
-
-=======
-        if(!car1.collide(player)){
-            ;
-        }
-        else if(log1.collide(player)){
-            player.loseLive();
-            player.setPos(235,490);
-        }
->>>>>>> master
+        car1.checkHit(player);
+        log1.checkFall(player);
 		if(player.getY() == 60) {
 			System.out.println("ribbit");
 			player.loseLive();
-<<<<<<< HEAD
-            player.setPos(210,420);
-=======
-			player.setPos(210, 420);
->>>>>>> master
+
 		} else if(keys[KeyEvent.VK_UP] && player.getY() > 60){
 			player.verticalMove(-1);
 			player.stayStill();
@@ -124,14 +109,14 @@ class GamePanel extends JPanel implements KeyListener {
     }
 
     public void paint(Graphics g){
-<<<<<<< HEAD
+
         //g.setColor(Color.black);
         //g.fillRect(0,0,450,390);
         g.drawImage(back,0,0,500,550,null);
-=======
+
         g.drawImage(back,0,0,420,464,null);
->>>>>>> master
+
         player.jump(g);
-       // car1.obstmove(g);
+
     }
 }

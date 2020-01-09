@@ -1,13 +1,16 @@
+import java.util.Random;
 import javax.swing.*;
 import java.awt.*;
-import java.util.Random;
 
-public class Car {
-    private static final int LEFT = -1, RIGHT = 1;
-    private  int x,y,dir,speed,imageNum;
-    private  Image pic;
+public class Log {
+    //pic/type are either going to be ints or pics depending on how we want to code
+    private int x,y,dir,speed,imageNum;
+    private Image pic;
+    private int frame;
     private  Rectangle rect;
-    public  Car(int lane){
+    private static final int LEFT = -1, RIGHT = 1;
+    Random random=new Random();
+    public Log(int lane){
         Random rand=new Random();
         rect=new Rectangle(x,y,30,30);
         if((lane % 2) == 0) {
@@ -26,8 +29,8 @@ public class Car {
     public void move(){
         rect.move(x+speed,y);
     }
-    public void checkHit(Frog frog){
-        if(rect.contains(frog.getX(),frog.getY()){
+    public void checkFall(Frog frog){
+        if(!(rect.contains(frog.getX(),frog.getY()))){
             frog.loseLive();
             if(frog.isDead()){
 
@@ -37,4 +40,5 @@ public class Car {
     public void draw(Graphics g){
         g.drawImage(pic, x + 30, y, -30, 30, null);
     }
+
 }
