@@ -18,7 +18,7 @@ public class Frogger extends JFrame implements ActionListener{
         add(game);
 
 
-        setPreferredSize(new Dimension(450,450));
+        setPreferredSize(new Dimension(420,464));
         setResizable(false);
         setVisible(true);
     }
@@ -44,11 +44,12 @@ class GamePanel extends JPanel implements KeyListener {
     private Frog player;
     private Obstacle car1;
     private Obstacle log1;
+    private Image back = new ImageIcon("back.png").getImage();
 
     public GamePanel(Frogger m) {
         keys = new boolean[KeyEvent.KEY_LAST+1];
         mainFrame = m;
-        player = new Frog(200, 250);
+        player = new Frog(195, 404);
         addKeyListener(this);
     }
 
@@ -96,8 +97,7 @@ class GamePanel extends JPanel implements KeyListener {
     }
 
     public void paint(Graphics g){
-        g.setColor(Color.black);
-        g.fillRect(0,0,400, 500);
+        g.drawImage(back,0,0,420,464,null);
         player.jump(g);
        // car1.obstmove(g);
     }
