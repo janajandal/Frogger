@@ -12,7 +12,7 @@ public class Frog {
     public Frog(int x,int y) {
         this.x=x;
         this.y=y;
-        frame = 0;
+        frame = 4;
         lives=3;
         pics = new Image[4][5];
         for(int i = 0; i<pics.length; i++){
