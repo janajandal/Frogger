@@ -2,11 +2,8 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Frog {
-    private int x,y;
-    private int lives;
-    private int dir;
+    private int x,y,lives,dir,points,home;
     private Image[][]pics;
-    private int points;
     private double frame;
     private static final int UP = 0, DOWN = 1, RIGHT = 2, LEFT = 3;
     public Frog(int x,int y) {
@@ -40,7 +37,7 @@ public class Frog {
         x=210;
         y=420;
     }
-    public void horizantalMove(int dist) {
+    public void horizontalMove(int dist) {
         if(dist < 0) {
             dir = LEFT;
         } else {
@@ -58,7 +55,9 @@ public class Frog {
 
 		y += dist * 30;
     }
-
+    public void setPoints(int points){
+        this.points=points;
+    }
 
     public void stayStill () {
         frame = 0;
