@@ -53,11 +53,8 @@ public class Frog {
 		y += dist*30;
     }
 
-    public void setX(int x) {
+    public void setPos(int x, int y) {
         this.x = x;
-    }
-
-    public void setY(int y) {
         this.y = y;
     }
 
