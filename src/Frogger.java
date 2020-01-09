@@ -83,6 +83,10 @@ class GamePanel extends JPanel implements KeyListener {
 			keys[KeyEvent.VK_LEFT] = false;
 		}
 		player.frogJump();
+
+		/*Point mouse = MouseInfo.getPointerInfo().getLocation();
+		Point offset = getLocationOnScreen();
+		System.out.println("("+(mouse.x-offset.x)+", "+(mouse.y-offset.y)+")");*/
 	}
 
 
