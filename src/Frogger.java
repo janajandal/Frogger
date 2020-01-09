@@ -63,8 +63,7 @@ class GamePanel extends JPanel implements KeyListener {
 		if(player.getY() == 60) {
 			System.out.println("ribbit");
 			player.loseLive();
-			player.setX(210);
-			player.setY(420);
+			player.setPos(210, 420);
 		} else if(keys[KeyEvent.VK_UP] && player.getY() > 60){
 			player.verticalMove(-1);
 			player.stayStill();
