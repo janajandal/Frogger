@@ -27,10 +27,10 @@ public class Car {
         rect.move(x+speed,y);
     }
     public void checkHit(Frog frog){
-        if(rect.contains(frog.getX(),frog.getY()){
+        if(rect.contains(frog.getX(),frog.getY())){
             frog.loseLive();
             if(frog.isDead()){
-
+                System.out.println("You lost");
             }
         }
     }

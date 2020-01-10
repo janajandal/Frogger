@@ -68,7 +68,11 @@ class GamePanel extends JPanel implements KeyListener {
             log.move();
             log.checkFall(player);
         }
-
+        if(player.getY()==55){ //homes for the frogs, idk if measurement is right
+           //if(0=<player.getX()>=55 || 85<player.getX()>105|| 135<=player.getX()>=165 || 190<=player.getX()>=220 || 260=<player.getX()>=310){
+                //dont know if sizes work
+                player.incHome();
+            }
 		if(player.getY() == 60) {
 			System.out.println("ribbit");
 			player.loseLive();
@@ -117,11 +121,14 @@ class GamePanel extends JPanel implements KeyListener {
 
         g.drawImage(back,0,0,420,464,null);
         player.jump(g);
+        /*
         for (Car car: cars) {
             car.draw(g);
         }
         for (Log log:logs) {
             log.draw(g);
         }
+
+         */
     }
 }

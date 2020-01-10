@@ -44,7 +44,7 @@ public class Frog {
             dir = RIGHT;
         }
         x += dist * 30;
-        x += dist*30;
+
     }
 	public void verticalMove(int dist) {
 		if(dist < 0) {
@@ -58,7 +58,14 @@ public class Frog {
     public void setPoints(int points){
         this.points=points;
     }
-
+    public void incHome(){
+        home++;
+        points+=50;
+        if (home==5){
+            points+=1000;
+            System.out.println("You won");
+        }
+    }
     public void stayStill () {
         frame = 0;
     }
