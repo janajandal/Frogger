@@ -48,7 +48,6 @@ class GamePanel extends JPanel implements KeyListener {
         keys = new boolean[KeyEvent.KEY_LAST+1];
         mainFrame = m;
 
-        player = new Frog(235, 490); //which one is the right one?
         player = new Frog(195, 404);
         addKeyListener(this);
     }
@@ -58,6 +57,7 @@ class GamePanel extends JPanel implements KeyListener {
         requestFocus();
         mainFrame.start();
     }
+
 
     public void move() {
         for (Car car: cars) {

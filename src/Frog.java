@@ -4,6 +4,7 @@ import java.awt.*;
 public class Frog {
     private int x,y,lives,dir,points,home;
     private Image[][]pics;
+    private boolean lady;
     private double frame;
     private static final int UP = 0, DOWN = 1, RIGHT = 2, LEFT = 3;
     public Frog(int x,int y) {
@@ -30,7 +31,12 @@ public class Frog {
     public int getX() {
         return x;
     }
+    /*
+    public void takeLady(Lady lady){
+        if(lady.getX()==x && lady.getY()==y)
+    }
 
+     */
 
     public void loseLive(){
         lives--;
@@ -66,6 +72,7 @@ public class Frog {
             System.out.println("You won");
         }
     }
+
     public void stayStill () {
         frame = 0;
     }
