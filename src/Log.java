@@ -3,14 +3,13 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Log {
-    //pic/type are either going to be ints or pics depending on how we want to code
-    private int x,y,dir,speed,imageNum;
+    private int x,y,dir,speed,imageNum,level;
     private Image pic;
     private int frame;
     private  Rectangle rect;
     private static final int LEFT = -1, RIGHT = 1;
     Random random=new Random();
-    public Log(int lane){
+    public Log(int lane,int level){
         Random rand=new Random();
         rect=new Rectangle(x,y,30,30);
         if((lane % 2) == 0) {
@@ -24,7 +23,7 @@ public class Log {
         imageNum=rand.nextInt(5);
         Image img = new ImageIcon("Obstacle"+imageNum+".png").getImage();
         pic = img.getScaledInstance(30,30,Image.SCALE_SMOOTH);
-        speed=20;
+        speed=20*level;
     }
     public void move(){
         rect.move(x+speed,y);

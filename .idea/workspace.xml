@@ -24,6 +24,12 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../OOPTest" />
   </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\User\IdeaProjects\Frogger\Obstacle" />
+      <recent name="C:\Users\User\IdeaProjects\Frogger" />
+    </key>
+  </component>
   <component name="RunDashboard">
     <option name="ruleStates">
       <list>
@@ -61,6 +67,8 @@
       <workItem from="1578326118138" duration="3021000" />
       <workItem from="1578412512149" duration="2210000" />
       <workItem from="1578671908521" duration="1919000" />
+      <workItem from="1578769839929" duration="6000" />
+      <workItem from="1578930868867" duration="1751000" />
     </task>
     <servers />
   </component>

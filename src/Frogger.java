@@ -51,6 +51,11 @@ class GamePanel extends JPanel implements KeyListener {
         player = new Frog(195, 404);
         addKeyListener(this);
     }
+    public void load(int level){
+        for(Car car:cars) {
+            
+        }
+    }
 
     public void addNotify() {
         super.addNotify();
