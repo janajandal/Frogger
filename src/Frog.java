@@ -37,6 +37,7 @@ public class Frog {
         lives--;
         x=210;
         y=420;
+        isDead();
     }
     public void horizontalMove(int dist) {
         if(dist < 0) {

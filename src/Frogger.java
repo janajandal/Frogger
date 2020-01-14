@@ -38,19 +38,38 @@ class GamePanel extends JPanel implements KeyListener {
     private boolean[]keys;
     private Frogger mainFrame;
     private Frog player;
+<<<<<<< Updated upstream
     private Car[]cars;
     private Log[]logs;
     private Image backPic = new ImageIcon("back.png").getImage();
+=======
+    private Car[]cars= new Car[9];
+    private Log[]logs= new Log[9];
+    private Image back = new ImageIcon("back.png").getImage();
+>>>>>>> Stashed changes
 
     public GamePanel(Frogger m) {
         keys = new boolean[KeyEvent.KEY_LAST+1];
         mainFrame = m;
+<<<<<<< Updated upstream
         player = new Frog(336, 648);
+=======
+
+        player = new Frog(195, 404);
+        load(1);
+>>>>>>> Stashed changes
         addKeyListener(this);
     }
     public void load(int level){
-        for(Car car:cars) {
-
+        int lane=0;
+        for(int i=0;i<9;i++) {
+            Car car[i]=new Car(lane,level);
+            cars[i]=car[i];
+            Log log[i]=new Log(lane,level);
+            lane++;
+            if (lane==4){
+                lane=0;
+            }
         }
     }
 

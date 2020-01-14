@@ -7,7 +7,7 @@ public class Alligator {
     private  int x,y,dir,speed,imageNum;
     private Image pic;
     private  Rectangle rect;
-    public Alligator(int lane){
+    public Alligator(int lane,int level){
         Random rand=new Random();
         rect=new Rectangle(x,y,30,30);
         if((lane % 2) == 0) {
@@ -21,7 +21,12 @@ public class Alligator {
         imageNum=rand.nextInt(5);
         Image img = new ImageIcon("Obstacle"+imageNum+".png").getImage();
         pic = img.getScaledInstance(30,30,Image.SCALE_SMOOTH);
-        speed=20;
+        speed=20*level;
+    }
+    public void checkEat(Frog frog){
+        if(rect.contains(frog.getX(),frog.getY())){
+            frog.loseLive();
+        }
     }
 
 }

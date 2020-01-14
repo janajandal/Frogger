@@ -7,7 +7,7 @@ public class Car {
     private  int x,y,dir,speed,imageNum;
     private  Image pic;
     private  Rectangle rect;
-    public  Car(int lane){
+    public  Car(int lane,int level){
         Random rand=new Random();
         rect=new Rectangle(x,y,30,30);
         if((lane % 2) == 0) {
