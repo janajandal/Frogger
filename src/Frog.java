@@ -8,7 +8,7 @@ public class Frog {
 	private double frame;
     private boolean lady; 
 	
-    public Frog(int x,int y) {
+    public Frog(int x,int y,int lady) {
         this.x=x;
         this.y=y;
         frame = 4;
@@ -26,12 +26,7 @@ public class Frog {
     public int getX() {
         return x;
     }
-    /*
-    public void takeLady(Lady lady){
-        if(lady.getX()==x && lady.getY()==y)
-    }
-
-     */
+    
 
     public void loseLive(){
         lives--;
