@@ -40,7 +40,7 @@ class GamePanel extends JPanel implements KeyListener {
     private Frog player;
     private Car[]cars;
     private Log[]logs;
-    private Image back = new ImageIcon("back.png").getImage();
+    private Image backPic = new ImageIcon("back.png").getImage();
 
     public GamePanel(Frogger m) {
         keys = new boolean[KeyEvent.KEY_LAST+1];
@@ -116,7 +116,7 @@ class GamePanel extends JPanel implements KeyListener {
     }
 
     public void paint(Graphics g){
-		g.drawImage(back, 0, 0, 672, 744, null);
+		g.drawImage(backPic, 0, 0, 672, 744, null);
         player.jump(g);
         /*
         for (Car car: cars) {
