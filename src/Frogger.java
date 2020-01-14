@@ -10,15 +10,13 @@ public class Frogger extends JFrame implements ActionListener{
     public Frogger() {
         super("Frogger");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(700,700);
-
-        myTimer = new Timer(10, this);	 // trigger every 10 ms
-
-        game = new GamePanel(this);
-        add(game);
-        setPreferredSize(new Dimension(420,464));
-        setResizable(false);
-        setVisible(true);
+		myTimer = new Timer(10, this);	 // trigger every 10 ms
+		game = new GamePanel(this);
+		game.setPreferredSize(new Dimension(672, 744));
+		add(game);
+		pack();		
+		setResizable(false);
+		setVisible(true);
     }
 
     public void start(){
@@ -47,8 +45,7 @@ class GamePanel extends JPanel implements KeyListener {
     public GamePanel(Frogger m) {
         keys = new boolean[KeyEvent.KEY_LAST+1];
         mainFrame = m;
-
-        player = new Frog(195, 404);
+        player = new Frog(336, 648);
         addKeyListener(this);
     }
     public void load(int level){
@@ -82,20 +79,20 @@ class GamePanel extends JPanel implements KeyListener {
 			System.out.println("ribbit");
 			player.loseLive();
 
-		} else if(keys[KeyEvent.VK_UP] && player.getY() > 60){
+		} else if(keys[KeyEvent.VK_UP] && player.getY() > 120){
 			player.verticalMove(-1);
 			player.stayStill();
 			player.setPoints(10);
 			keys[KeyEvent.VK_UP] = false;
-		} else if(keys[KeyEvent.VK_DOWN] && player.getY() < 520){
+		} else if(keys[KeyEvent.VK_DOWN] && player.getY() < 696){
 			player.verticalMove(1);
 			player.stayStill();
 			keys[KeyEvent.VK_DOWN] = false;
-		} else if(keys[KeyEvent.VK_RIGHT] && player.getX() < 520){
+		} else if(keys[KeyEvent.VK_RIGHT]){
 			player.horizontalMove(1);
 			player.stayStill();
 			keys[KeyEvent.VK_RIGHT] = false;
-		} else if(keys[KeyEvent.VK_LEFT] && player.getX() > 0){
+		} else if(keys[KeyEvent.VK_LEFT]){
 			player.horizontalMove(-1);
 			player.stayStill();
 			keys[KeyEvent.VK_LEFT] = false;
@@ -119,12 +116,7 @@ class GamePanel extends JPanel implements KeyListener {
     }
 
     public void paint(Graphics g){
-
-        //g.setColor(Color.black);
-        //g.fillRect(0,0,450,390);
-        g.drawImage(back,0,0,500,550,null);
-
-        g.drawImage(back,0,0,420,464,null);
+		g.drawImage(back, 0, 0, 672, 744, null);
         player.jump(g);
         /*
         for (Car car: cars) {
