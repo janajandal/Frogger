@@ -53,7 +53,7 @@ class GamePanel extends JPanel implements KeyListener {
     }
     public void load(int level){
         for(Car car:cars) {
-            
+
         }
     }
 
