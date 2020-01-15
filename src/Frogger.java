@@ -51,9 +51,10 @@ class GamePanel extends JPanel implements KeyListener {
         mainFrame = m;
 
         player = new Frog(336, 648,false);
-        Random rand= new Random();
-
         load(1);
+        Random rand= new Random();
+        int pos= rand.nextInt(9);
+
 
         addKeyListener(this);
     }
