@@ -1,5 +1,6 @@
 import java.awt.*;
 import java.awt.event.*;
+import java.util.Random;
 import javax.swing.*;
 
 
@@ -38,9 +39,7 @@ class GamePanel extends JPanel implements KeyListener {
     private boolean[]keys;
     private Frogger mainFrame;
     private Frog player;
-
-    private Car[]cars;
-    private Log[]logs;
+    private Frog lady;
     private Image backPic = new ImageIcon("back.png").getImage();
     private Car[]cars= new Car[9];
     private Log[]logs= new Log[9];
@@ -51,7 +50,8 @@ class GamePanel extends JPanel implements KeyListener {
         keys = new boolean[KeyEvent.KEY_LAST+1];
         mainFrame = m;
 
-        player = new Frog(336, 648);
+        player = new Frog(336, 648,false);
+        Random rand= new Random();
 
         load(1);
 
@@ -90,6 +90,7 @@ class GamePanel extends JPanel implements KeyListener {
            //if(0=<player.getX()>=55 || 85<player.getX()>105|| 135<=player.getX()>=165 || 190<=player.getX()>=220 || 260=<player.getX()>=310){
                 //dont know if sizes work
                 player.incHome();
+                player.hasLady()
             }
 		if(player.getY() == 60) {
 			System.out.println("ribbit");

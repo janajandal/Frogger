@@ -8,13 +8,14 @@ public class Frog {
 	private double frame;
     private boolean lady; 
 	
-    public Frog(int x,int y,int lady) {
+    public Frog(int x,int y,boolean lady) {
         this.x=x;
         this.y=y;
         frame = 4;
         lives=3;
 		dir = UP;
 		col = GREEN;
+		this.lady=lady;
 		loadPics();
     }
     public boolean isDead(){
@@ -26,7 +27,7 @@ public class Frog {
     public int getX() {
         return x;
     }
-    
+
 
     public void loseLive(){
         lives--;
@@ -64,11 +65,19 @@ public class Frog {
         }
     }
 
+    public boolean isLady() {
+        return lady;
+    }
+
+    public boolean hasLady(Frog frog){
+        return (frog.isLady() && (frog.getX()==x) && (frog.getY()==y));
+    }
+
     public void stayStill () {
         frame = 0;
     }
     public void frogJump(){
-        frame = frame + 0.125< pics.length ? frame + 0.125: 4;
+        frame = frame + 0.125< frogPics.length ? frame + 0.125: 4;
 
     }
     public void jump (Graphics g){
