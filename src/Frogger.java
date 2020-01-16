@@ -1,5 +1,6 @@
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
 import java.util.Random;
 import javax.swing.*;
 
@@ -43,6 +44,7 @@ class GamePanel extends JPanel implements KeyListener {
     private Image backPic = new ImageIcon("back.png").getImage();
     private Car[]cars= new Car[9];
     private Log[]logs= new Log[9];
+    private ArrayList<Rectangle>home;
     private Image back = new ImageIcon("back.png").getImage();
 
 
@@ -58,12 +60,16 @@ class GamePanel extends JPanel implements KeyListener {
 
         addKeyListener(this);
     }
+    public void home(){
+        for(int i=0;i<5;i++){
+            home.add(new Rectangle(,72) )
+        }
+    }
     public void load(int level){
         int lane=0;
         for(int i=0;i<9;i++) {
-            Car car[i]=new Car(lane,level);
-            cars[i]=car[i];
-            Log log[i]=new Log(lane,level);
+            cars[i]=new Car(lane,level);
+            logs[i]=new Log(lane,level);
             lane++;
             if (lane==4){
                 lane=0;
@@ -87,12 +93,7 @@ class GamePanel extends JPanel implements KeyListener {
             log.move();
             log.checkFall(player);
         }
-        if(player.getY()==55){ //homes for the frogs, idk if measurement is right
-           //if(0=<player.getX()>=55 || 85<player.getX()>105|| 135<=player.getX()>=165 || 190<=player.getX()>=220 || 260=<player.getX()>=310){
-                //dont know if sizes work
-                player.incHome();
-                player.hasLady()
-            }
+        
 		if(player.getY() == 60) {
 			System.out.println("ribbit");
 			player.loseLive();
@@ -136,7 +137,7 @@ class GamePanel extends JPanel implements KeyListener {
     public void paint(Graphics g){
 		g.drawImage(backPic, 0, 0, 672, 744, null);
         player.jump(g);
-        /*
+
         for (Car car: cars) {
             car.draw(g);
         }
@@ -144,6 +145,6 @@ class GamePanel extends JPanel implements KeyListener {
             log.draw(g);
         }
 
-         */
+
     }
 }

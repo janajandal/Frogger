@@ -37,7 +37,7 @@ public class Log {
         return x;
     }
     public int getLength(){
-        pic.getHeight(null);
+        return pic.getHeight(null);
     }
 
     public void move(){
