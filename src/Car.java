@@ -9,7 +9,7 @@ public class Car {
     private  Rectangle rect;
     public  Car(int lane,int level){
         Random rand=new Random();
-        rect=new Rectangle(x,y,30,30);
+        x=0;
         if((lane % 2) == 0) {
             dir=RIGHT;
 
@@ -18,10 +18,11 @@ public class Car {
 
         }
         y=30*lane;
-        imageNum=rand.nextInt(5);
-        Image img = new ImageIcon("Obstacle"+imageNum+".png").getImage();
-        pic = img.getScaledInstance(30,30,Image.SCALE_SMOOTH);
-        speed=20;
+        imageNum=rand.nextInt(3);
+        String file = String.format("Obstacle/%d/car%d.png", dir, imageNum);
+        pic = new ImageIcon(file).getImage();
+        rect=new Rectangle(x,y,pic.getWidth(null),pic.getHeight(null));
+        speed=20*level;
     }
     public void move(){
         rect.move(x+speed,y);

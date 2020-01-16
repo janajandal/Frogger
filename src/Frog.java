@@ -64,7 +64,9 @@ public class Frog {
             System.out.println("You won");
         }
     }
-
+    public void keepMove(Log log){
+        Math.min(log.getLength(),x+10*dir);
+    }
     public boolean isLady() {
         return lady;
     }

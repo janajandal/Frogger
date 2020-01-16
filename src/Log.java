@@ -1,3 +1,4 @@
+import java.awt.image.ImageObserver;
 import java.util.Random;
 import javax.swing.*;
 import java.awt.*;
@@ -11,7 +12,7 @@ public class Log {
     Random random=new Random();
     public Log(int lane,int level){
         Random rand=new Random();
-        rect=new Rectangle(x,y,30,30);
+        x=0;
         if((lane % 2) == 0) {
             dir=RIGHT;
 
@@ -20,11 +21,25 @@ public class Log {
 
         }
         y=30*lane;
-        imageNum=rand.nextInt(5);
-        Image img = new ImageIcon("Obstacle"+imageNum+".png").getImage();
-        pic = img.getScaledInstance(30,30,Image.SCALE_SMOOTH);
+       // imageNum=rand.nextInt(3);
+        imageNum=1;
+        String file = String.format("Obstacle/%d/log%d.png", dir, imageNum);
+        pic = new ImageIcon(file).getImage();
+        rect=new Rectangle(x,y,pic.getWidth(null),pic.getHeight(null));
         speed=20*level;
     }
+
+    public int getY() {
+        return y;
+    }
+
+    public int getX() {
+        return x;
+    }
+    public int getLength(){
+        pic.getHeight(null);
+    }
+
     public void move(){
         rect.move(x+speed,y);
     }

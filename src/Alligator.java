@@ -7,20 +7,19 @@ public class Alligator {
     private  int x,y,dir,speed,imageNum;
     private Image pic;
     private  Rectangle rect;
-    public Alligator(int lane,int level){
+    public Alligator(int home,int level){
         Random rand=new Random();
-        rect=new Rectangle(x,y,30,30);
-        if((lane % 2) == 0) {
+        if(rand.nextInt(RIGHT)==RIGHT){
             dir=RIGHT;
-
-        } else{
-            dir=LEFT ;
-
         }
-        y=30*lane;
-        imageNum=rand.nextInt(5);
-        Image img = new ImageIcon("Obstacle"+imageNum+".png").getImage();
-        pic = img.getScaledInstance(30,30,Image.SCALE_SMOOTH);
+        else{
+            dir=LEFT;
+        }
+        x=home;
+        y=30;
+        String file = String.format("Obstacle/%d/alligator%d.png", dir, imageNum);
+        pic = new ImageIcon(file).getImage();
+        rect=new Rectangle(x,y,pic.getWidth(null),pic.getHeight(null));
         speed=20*level;
     }
     public void checkEat(Frog frog){
