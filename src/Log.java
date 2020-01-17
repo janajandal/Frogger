@@ -10,24 +10,24 @@ public class Log {
     private  Rectangle rect;
     private static final int LEFT = -1, RIGHT = 1;
     Random random=new Random();
-    public Log(int lane,int place,int level){
+    public Log(int place,int lane,int level){
         Random rand=new Random();
         if(lane % 2 == 0) {
             dir=LEFT;
-            this.place=343*place;
+            this.place=343+(place*2);
             restart=0;
         }
         else {
             dir=RIGHT;
-            this.place=0;
-            restart=654;
+            this.place=30;
+            restart=674;
         }
 
         // imageNum=rand.nextInt(3);
         imageNum=1;
         String file = String.format("Obstacle/%d/log%d.png", dir, imageNum);
         pic = new ImageIcon(file).getImage();
-        rect=new Rectangle(this.place,113*lane,pic.getWidth(null),pic.getHeight(null));
+        rect=new Rectangle(this.place,48*lane,pic.getWidth(null),pic.getHeight(null));
         speed=1*level;
     }
 
@@ -45,13 +45,12 @@ public class Log {
 
     public void move(){
         rect.move(rect.x+speed*dir,rect.y);
-        if(rect.x<543){
-            rect.x=restart;
+        if((rect.x>restart && dir==RIGHT) || (rect.x<restart && dir==LEFT)){
+            rect.x=place;
         }
-        // TODO: 2020-01-16 go back after moving off screen
 
     }
-    public void checkFall(Frog frog){
+    public void checkFall(Frog frog){ // TODO: 2020-01-17 check if frog is near river
         if(!(rect.contains(frog.getX(),frog.getY()))){
             frog.loseLive();
             if(frog.isDead()){

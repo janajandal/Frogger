@@ -52,29 +52,33 @@ class GamePanel extends JPanel implements KeyListener {
         keys = new boolean[KeyEvent.KEY_LAST+1];
         mainFrame = m;
 
-        player = new Frog(336, 648,false);
-        load(1); // TODO: 2020-01-16 level up 
+        player = new Frog(236, 348,false);
+        load(1); // TODO: 2020-01-16 level up
         Random rand= new Random();
         int pos= rand.nextInt(9);
         //lady= new Frog(logs[pos].getX()+10,logs[pos].getY(),true);
-        home();
+//        home();
         addKeyListener(this);
     }
+    /*
     public void home(){
         for(int i=0;i<5;i++){
             Rectangle rect=new Rectangle(40*i,72*i,60,41);
             homes.add(rect);
         }
     }
+
+
+     */
     public void load(int level){
-        int lane=0;
+        int lane=1;
         for(int i=0;i<9;i++) {
-            for(int j=0;j<4;j++){
-                cars[i]=new Car(lane,i,level);
-                logs[i]=new Log(lane,i,level);
+            for(int j=1;j<4;j++){
+                cars[i]=new Car(i,lane,level);
+                logs[i]=new Log(i,lane,level);
             }
             lane++;
-            if (lane==4){
+            if (lane==5){
                 lane=0;
             }
         }
@@ -96,11 +100,15 @@ class GamePanel extends JPanel implements KeyListener {
             log.move();
             log.checkFall(player);
         }
+        /*
         for (Rectangle h: homes) {
             if(h.contains(player.getY(),player.getX())){
                 player.incHome();
             }
         }
+
+
+         */
 		if(player.getY() == 60) {
 			player.loseLive();
 
