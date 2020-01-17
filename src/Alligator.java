@@ -20,7 +20,7 @@ public class Alligator {
         String file = String.format("Obstacle/%d/alligator%d.png", dir, imageNum);
         pic = new ImageIcon(file).getImage();
         rect=new Rectangle(x,y,pic.getWidth(null),pic.getHeight(null));
-        speed=20*level;
+        speed=2*level;
     }
     public void checkEat(Frog frog){
         if(rect.contains(frog.getX(),frog.getY())){

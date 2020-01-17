@@ -44,7 +44,7 @@ class GamePanel extends JPanel implements KeyListener {
     private Image backPic = new ImageIcon("back.png").getImage();
     private Car[]cars= new Car[9];
     private Log[]logs= new Log[9];
-    private ArrayList<Rectangle>home;
+    private ArrayList<Rectangle>homes;
     private Image back = new ImageIcon("back.png").getImage();
 
 
@@ -53,23 +53,26 @@ class GamePanel extends JPanel implements KeyListener {
         mainFrame = m;
 
         player = new Frog(336, 648,false);
-        load(1);
+        load(1); // TODO: 2020-01-16 level up 
         Random rand= new Random();
         int pos= rand.nextInt(9);
-        lady= new Frog(logs[pos].getX()+10,logs[pos].getY(),true);
-
+        //lady= new Frog(logs[pos].getX()+10,logs[pos].getY(),true);
+        home();
         addKeyListener(this);
     }
     public void home(){
         for(int i=0;i<5;i++){
-            home.add(new Rectangle(,72) )
+            Rectangle rect=new Rectangle(40*i,72*i,60,41);
+            homes.add(rect);
         }
     }
     public void load(int level){
         int lane=0;
         for(int i=0;i<9;i++) {
-            cars[i]=new Car(lane,level);
-            logs[i]=new Log(lane,level);
+            for(int j=0;j<4;j++){
+                cars[i]=new Car(lane,i,level);
+                logs[i]=new Log(lane,i,level);
+            }
             lane++;
             if (lane==4){
                 lane=0;
@@ -93,9 +96,12 @@ class GamePanel extends JPanel implements KeyListener {
             log.move();
             log.checkFall(player);
         }
-        
+        for (Rectangle h: homes) {
+            if(h.contains(player.getY(),player.getX())){
+                player.incHome();
+            }
+        }
 		if(player.getY() == 60) {
-			System.out.println("ribbit");
 			player.loseLive();
 
 		} else if(keys[KeyEvent.VK_UP] && player.getY() > 120){
@@ -118,9 +124,9 @@ class GamePanel extends JPanel implements KeyListener {
 		}
 		player.frogJump();
 
-		/*Point mouse = MouseInfo.getPointerInfo().getLocation();
+		Point mouse = MouseInfo.getPointerInfo().getLocation();
 		Point offset = getLocationOnScreen();
-		System.out.println("("+(mouse.x-offset.x)+", "+(mouse.y-offset.y)+")");*/
+		System.out.println("("+(mouse.x-offset.x)+", "+(mouse.y-offset.y)+")");
 	}
 
 
@@ -140,10 +146,13 @@ class GamePanel extends JPanel implements KeyListener {
 
         for (Car car: cars) {
             car.draw(g);
+
         }
         for (Log log:logs) {
+
             log.draw(g);
         }
+
 
 
     }

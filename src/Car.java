@@ -4,28 +4,29 @@ import java.util.Random;
 
 public class Car {
     private static final int LEFT = -1, RIGHT = 1;
-    private  int x,y,dir,speed,imageNum;
+    private  int dir,speed,imageNum,place,restart;
     private  Image pic;
     private  Rectangle rect;
-    public  Car(int lane,int level){
+    public  Car(int lane,int place,int level){
         Random rand=new Random();
-        x=0;
-        if((lane % 2) == 0) {
-            dir=RIGHT;
-
-        } else{
-            dir=LEFT ;
-
+        if(lane % 2 == 0) {
+            dir=LEFT;
+            this.place=343*place;
+            restart=0;
         }
-        y=30*lane;
+        else {
+            dir=RIGHT;
+            this.place=0;
+            restart=654;
+        }
         imageNum=rand.nextInt(3);
         String file = String.format("Obstacle/%d/car%d.png", dir, imageNum);
         pic = new ImageIcon(file).getImage();
-        rect=new Rectangle(x,y,pic.getWidth(null),pic.getHeight(null));
-        speed=20*level;
+        rect=new Rectangle(this.place,30*lane,pic.getWidth(null),pic.getHeight(null));
+        speed=2*level;
     }
     public void move(){
-        rect.move(x+speed,y);
+        rect.move(rect.x+speed,rect.y);
     }
     public void checkHit(Frog frog){
         if(rect.contains(frog.getX(),frog.getY())){
@@ -36,6 +37,6 @@ public class Car {
         }
     }
     public void draw(Graphics g){
-        g.drawImage(pic, x + 30, y, -30, 30, null);
+        g.drawImage(pic, rect.x + 30, rect.y, -48, 48, null);
     }
 }
