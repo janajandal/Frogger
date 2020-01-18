@@ -14,7 +14,7 @@ public class Log {
         Random rand=new Random();
         if(lane % 2 == 0) {
             dir=LEFT;
-            this.place=343+(place*2);
+            this.place=541+(place*2);
             restart=0;
         }
         else {
@@ -27,7 +27,7 @@ public class Log {
         imageNum=1;
         String file = String.format("Obstacle/%d/log%d.png", dir, imageNum);
         pic = new ImageIcon(file).getImage();
-        rect=new Rectangle(this.place,48*lane,pic.getWidth(null),pic.getHeight(null));
+        rect=new Rectangle(this.place,109*lane,pic.getWidth(null),pic.getHeight(null));
         speed=1*level;
     }
 
@@ -50,12 +50,21 @@ public class Log {
         }
 
     }
-    public void checkFall(Frog frog){ // TODO: 2020-01-17 check if frog is near river
-        if(!(rect.contains(frog.getX(),frog.getY()))){
-            frog.loseLive();
-            if(frog.isDead()){
-
+    public void checkFall(Frog frog){
+        boolean near;
+        near= frog.getY()<=320?true:false;
+        if (!(rect.contains(frog.getX(), frog.getY()))) {
+            if (near) {
+                frog.loseLive();
+                if (frog.isDead()) {
+                    System.out.println("you is dead");
+                    // TODO: 2020-01-17 call function that draws gameOver from Frog
+                }
             }
+        }
+        else{ // TODO: 2020-01-17 stay on log 
+            frog.setX(rect.x);
+            frog.setY(rect.y);
         }
     }
     public void draw(Graphics g){

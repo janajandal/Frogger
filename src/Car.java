@@ -17,16 +17,16 @@ public class Car {
         else {
             dir=RIGHT;
             this.place=0;
-            restart=654;
+            restart=674;
         }
         imageNum=rand.nextInt(3);
         String file = String.format("Obstacle/%d/car%d.png", dir, imageNum);
         pic = new ImageIcon(file).getImage();
-        rect=new Rectangle(this.place,48*lane,pic.getWidth(null),pic.getHeight(null));
+        rect=new Rectangle(this.place,260*lane,pic.getWidth(null),pic.getHeight(null));
         speed=2*level;
     }
     public void move(){
-        rect.move(rect.x+speed,rect.y);
+        rect.move(rect.x+speed*dir,rect.y);
         if((rect.x>restart && dir==RIGHT) || (rect.x<restart && dir==LEFT)) {
             rect.x = place;
         }

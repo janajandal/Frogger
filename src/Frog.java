@@ -28,11 +28,18 @@ public class Frog {
         return x;
     }
 
+    public void setY(int y) {
+        this.y = y;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
 
     public void loseLive(){
         lives--;
-        x=210;
-        y=420;
+        x=310;
+        y=662;
         isDead();
     }
     public void horizontalMove(int dist) {
@@ -61,7 +68,7 @@ public class Frog {
         points+=50;
         if (home==5){
             points+=1000;
-            System.out.println("You won");
+            System.out.println("You won"); // TODO: 2020-01-17 win game
         }
     }
     public void keepMove(Log log){
