@@ -52,7 +52,7 @@ class GamePanel extends JPanel implements KeyListener {
         keys = new boolean[KeyEvent.KEY_LAST+1];
         mainFrame = m;
 
-        player = new Frog(310, 662,false);
+        player = new Frog(310, 162,false);
         load(1); // TODO: 2020-01-16 level up
         Random rand= new Random();
         int pos= rand.nextInt(9);
@@ -108,12 +108,12 @@ class GamePanel extends JPanel implements KeyListener {
         }
 
 		if(player.getY() == 60) {
-			player.loseLive();
+            System.out.println("fun");
 
 		} else if(keys[KeyEvent.VK_UP] && player.getY() > 120){
 			player.verticalMove(-1);
 			player.stayStill();
-			player.setPoints(10);
+			player.addPoints(10);
 			keys[KeyEvent.VK_UP] = false;
 		} else if(keys[KeyEvent.VK_DOWN] && player.getY() < 696){
 			player.verticalMove(1);
@@ -161,8 +161,10 @@ class GamePanel extends JPanel implements KeyListener {
 
             log.draw(g);
         }
-
-
+        g.setColor(Color.white);
+        Font font=new Font("Copperplate Gothic Bold",3,15);
+        g.setFont(font);
+        g.drawString(Integer.toString(player.getPoints()),119,17);
 
     }
 }

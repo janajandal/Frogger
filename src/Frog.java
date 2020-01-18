@@ -13,6 +13,8 @@ public class Frog {
         this.y=y;
         frame = 4;
         lives=3;
+        //points=0;
+        home=0;
 		dir = UP;
 		col = GREEN;
 		this.lady=lady;
@@ -60,17 +62,23 @@ public class Frog {
 
 		y += dist * 48;
     }
-    public void setPoints(int points){
-        this.points=points;
+    public void addPoints(int points){
+        this.points+=points;
     }
     public void incHome(){
         home++;
         points+=50;
+        System.out.println("home sweet home");
         if (home==5){
             points+=1000;
             System.out.println("You won"); // TODO: 2020-01-17 win game
         }
     }
+
+    public int getPoints() {
+        return points;
+    }
+
     public void keepMove(Log log){
         Math.min(log.getLength(),x+10*dir);
     }
@@ -110,6 +118,10 @@ public class Frog {
 				frogPics[PURPLE][i][j] = img.getScaledInstance(48,48,Image.SCALE_SMOOTH);
 			}
 		}
+    }
+    public void ggPic(Graphics g){
+        Image img= new ImageIcon("gg.jpg").getImage();
+        g.drawImage(img,234,364,null);
     }
 
 }
