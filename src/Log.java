@@ -50,22 +50,22 @@ public class Log {
 
     }
     public void checkFall(Frog frog){
-        boolean near;
-        near= frog.getY()<=320?true:false;
-        if (!(rect.contains(frog.getX(), frog.getY()))) {
-            if (near) {
+        boolean near = false;
+       if (near) {
+            if (rect.contains(frog.getX(), frog.getY())) {
+                frog.setX(rect.x);
+                frog.setY(rect.y);
+            } else {
                 frog.loseLive();
                 frog.isDead();
                     // TODO: 2020-01-17 call function that draws gameOver from Frog
                 }
-            }
-        else{ // TODO: 2020-01-17 stay on log
-            frog.setX(rect.x);
-            frog.setY(rect.y);
-        }
+       }
+
     }
 
     public void draw(Graphics g){
-        g.drawImage(pic, rect.x+30, rect.y, -48, 48, null);
+        g.drawImage(pic, rect.x, rect.y, 48, 48, null);
+        g.drawRect(rect.x,rect.y,rect.width,rect.height);
     }
 }

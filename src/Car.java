@@ -38,6 +38,6 @@ public class Car {
             }
         }
     public void draw(Graphics g){
-        g.drawImage(pic, rect.x + 30, rect.y, -48, 48, null);
+        g.drawImage(pic, rect.x + 30, rect.y, 48, 48, null);
     }
 }

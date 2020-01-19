@@ -7,7 +7,7 @@ public class Frog {
 	private static final int UP = 0, DOWN = 1, RIGHT = 2, LEFT = 3, GREEN = 0, PURPLE = 1;
 	private double frame;
     private boolean lady;
-    private Graphics g;
+
 	
     public Frog(int x,int y,boolean lady) {
         this.x=x;
@@ -45,7 +45,7 @@ public class Frog {
     public void loseLive(){
         lives--;
         x=310;
-        y=662;
+        y=654;
         isDead();
     }
     public void horizontalMove(int dist) {
@@ -106,6 +106,7 @@ public class Frog {
     public void jump (Graphics g){
         Image sprite = frogPics[col][dir][(int) Math.round(frame)];
         g.drawImage(sprite, x, y, 48, 48, null);
+        g.drawRect(x,y,48,48);
     }
 	
 	public void loadPics() {
