@@ -6,7 +6,8 @@ public class Frog {
 	private Image[][][] frogPics;
 	private static final int UP = 0, DOWN = 1, RIGHT = 2, LEFT = 3, GREEN = 0, PURPLE = 1;
 	private double frame;
-    private boolean lady; 
+    private boolean lady;
+    private Graphics g;
 	
     public Frog(int x,int y,boolean lady) {
         this.x=x;
@@ -20,8 +21,11 @@ public class Frog {
 		this.lady=lady;
 		loadPics();
     }
-    public boolean isDead(){
-        return lives<=0;
+    public void isDead(){
+        if(lives<=0){
+           // ggPic(g);
+            System.out.println("death awaits us all");
+        }
     }
     public int getY() {
         return y;
@@ -71,7 +75,7 @@ public class Frog {
         System.out.println("home sweet home");
         if (home==5){
             points+=1000;
-            System.out.println("You won"); // TODO: 2020-01-17 win game
+            System.out.println("You won"); // TODO: 2020-01-17 win game level up
         }
     }
 
@@ -86,8 +90,10 @@ public class Frog {
         return lady;
     }
 
-    public boolean hasLady(Frog frog){
-        return (frog.isLady() && (frog.getX()==x) && (frog.getY()==y));
+    public void hasLady(Frog frog){
+        if(frog.isLady() && (frog.getX()==x) && (frog.getY()==y)){
+            points+=200;
+        }
     }
 
     public void stayStill () {
@@ -121,7 +127,7 @@ public class Frog {
     }
     public void ggPic(Graphics g){
         Image img= new ImageIcon("gg.jpg").getImage();
-        g.drawImage(img,234,364,null);
+        g.drawImage(img,204,364,null);
     }
 
 }

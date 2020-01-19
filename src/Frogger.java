@@ -42,8 +42,8 @@ class GamePanel extends JPanel implements KeyListener {
     private Frog player;
     private Frog lady;
     private Image backPic = new ImageIcon("back.png").getImage();
-    private Car[]cars= new Car[3];
-    private Log[]logs= new Log[3];
+    private Car[]cars= new Car[5];
+    private Log[]logs= new Log[5];
     private ArrayList<Rectangle>homes=new ArrayList<Rectangle>();
     private Image back = new ImageIcon("back.png").getImage();
 
@@ -72,10 +72,10 @@ class GamePanel extends JPanel implements KeyListener {
 
     public void load(int level){
         int lane=1;
-        for(int i=0;i<3;i++) {
+        for(int i=0;i<5;i++) {
             for(int j=1;j<4;j++){
-                cars[i]=new Car(i,lane,level);
-                logs[i]=new Log(i,lane,level);
+                cars[i]=new Car(j,lane,level);
+                logs[i]=new Log(j,lane,level);
             }
             lane++;
             if (lane==5){
@@ -110,12 +110,12 @@ class GamePanel extends JPanel implements KeyListener {
 		if(player.getY() == 60) {
             System.out.println("fun");
 
-		} else if(keys[KeyEvent.VK_UP] && player.getY() > 120){
+		} else if(keys[KeyEvent.VK_UP]){
 			player.verticalMove(-1);
 			player.stayStill();
 			player.addPoints(10);
 			keys[KeyEvent.VK_UP] = false;
-		} else if(keys[KeyEvent.VK_DOWN] && player.getY() < 696){
+		} else if(keys[KeyEvent.VK_DOWN]){
 			player.verticalMove(1);
 			player.stayStill();
 			keys[KeyEvent.VK_DOWN] = false;
@@ -165,6 +165,5 @@ class GamePanel extends JPanel implements KeyListener {
         Font font=new Font("Copperplate Gothic Bold",3,15);
         g.setFont(font);
         g.drawString(Integer.toString(player.getPoints()),119,17);
-
     }
 }

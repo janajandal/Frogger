@@ -22,12 +22,11 @@ public class Log {
             this.place=30;
             restart=674;
         }
-
-        // imageNum=rand.nextInt(3);
         imageNum=1;
+
         String file = String.format("Obstacle/%d/log%d.png", dir, imageNum);
         pic = new ImageIcon(file).getImage();
-        rect=new Rectangle(this.place,109*lane,pic.getWidth(null),pic.getHeight(null));
+        rect=new Rectangle(this.place,130+(lane*48),pic.getWidth(null),pic.getHeight(null));
         speed=1*level;
     }
 
@@ -44,7 +43,7 @@ public class Log {
     }
 
     public void move(){
-        rect.move(rect.x+speed*dir,rect.y);
+        rect.setLocation(rect.x+speed*dir,rect.y);
         if((rect.x>restart && dir==RIGHT) || (rect.x<restart && dir==LEFT)){
             rect.x=place;
         }
@@ -56,19 +55,17 @@ public class Log {
         if (!(rect.contains(frog.getX(), frog.getY()))) {
             if (near) {
                 frog.loseLive();
-                if (frog.isDead()) {
-                    System.out.println("you is dead");
+                frog.isDead();
                     // TODO: 2020-01-17 call function that draws gameOver from Frog
                 }
             }
-        }
-        else{ // TODO: 2020-01-17 stay on log 
+        else{ // TODO: 2020-01-17 stay on log
             frog.setX(rect.x);
             frog.setY(rect.y);
         }
     }
+
     public void draw(Graphics g){
         g.drawImage(pic, rect.x+30, rect.y, -48, 48, null);
     }
-
 }

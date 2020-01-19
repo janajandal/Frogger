@@ -11,7 +11,7 @@ public class Car {
         Random rand=new Random();
         if(lane % 2 == 0) {
             dir=LEFT;
-            this.place=473+(place*2);
+            this.place=(place*2);
             restart=0;
         }
         else {
@@ -19,14 +19,14 @@ public class Car {
             this.place=0;
             restart=674;
         }
-        imageNum=rand.nextInt(3);
+        imageNum=1;
         String file = String.format("Obstacle/%d/car%d.png", dir, imageNum);
         pic = new ImageIcon(file).getImage();
-        rect=new Rectangle(this.place,260*lane,pic.getWidth(null),pic.getHeight(null));
+        rect=new Rectangle(this.place,412+(lane*48),pic.getWidth(null),pic.getHeight(null));
         speed=2*level;
     }
     public void move(){
-        rect.move(rect.x+speed*dir,rect.y);
+        rect.setLocation(rect.x+speed*dir,rect.y);
         if((rect.x>restart && dir==RIGHT) || (rect.x<restart && dir==LEFT)) {
             rect.x = place;
         }
@@ -34,11 +34,9 @@ public class Car {
     public void checkHit(Frog frog){
         if(rect.contains(frog.getX(),frog.getY())){
             frog.loseLive();
-            if(frog.isDead()){
-                System.out.println("You lost");
+            frog.isDead();
             }
         }
-    }
     public void draw(Graphics g){
         g.drawImage(pic, rect.x + 30, rect.y, -48, 48, null);
     }
