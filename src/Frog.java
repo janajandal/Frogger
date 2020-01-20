@@ -6,10 +6,9 @@ public class Frog {
 	private Image[][][] frogPics;
 	private static final int UP = 0, DOWN = 1, RIGHT = 2, LEFT = 3, GREEN = 0, PURPLE = 1;
 	private double frame;
-    private boolean lady;
 
 	
-    public Frog(int x,int y,boolean lady) {
+    public Frog(int x,int y) {
         this.x=x;
         this.y=y;
         frame = 4;
@@ -18,7 +17,7 @@ public class Frog {
         home=0;
 		dir = UP;
 		col = GREEN;
-		this.lady=lady;
+
 		loadPics();
     }
     public void isDead(){
@@ -86,16 +85,16 @@ public class Frog {
     public void keepMove(Log log){
         Math.min(log.getLength(),x+10*dir);
     }
-    public boolean isLady() {
-        return lady;
-    }
 
-    public void hasLady(Frog frog){
+/*
+    public void hasLady(Lady frog){
         if(frog.isLady() && (frog.getX()==x) && (frog.getY()==y)){
             points+=200;
         }
     }
 
+
+ */
     public void stayStill () {
         frame = 0;
     }
@@ -106,7 +105,7 @@ public class Frog {
     public void jump (Graphics g){
         Image sprite = frogPics[col][dir][(int) Math.round(frame)];
         g.drawImage(sprite, x, y, 48, 48, null);
-        g.drawRect(x,y,48,48);
+
     }
 	
 	public void loadPics() {

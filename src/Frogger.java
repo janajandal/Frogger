@@ -42,8 +42,8 @@ class GamePanel extends JPanel implements KeyListener {
     private Frog player;
     private Frog lady;
     private Image backPic = new ImageIcon("back.png").getImage();
-    private Car[]cars= new Car[5];
-    private Log[]logs= new Log[5];
+    private ArrayList<Car>cars=new ArrayList<Car>();
+    private ArrayList<Log>logs= new ArrayList<Log>();
     private ArrayList<Rectangle>homes=new ArrayList<Rectangle>();
     private Image back = new ImageIcon("back.png").getImage();
 
@@ -52,11 +52,9 @@ class GamePanel extends JPanel implements KeyListener {
         keys = new boolean[KeyEvent.KEY_LAST+1];
         mainFrame = m;
 
-        player = new Frog(310, 654,false);
+        player = new Frog(310, 654);
         load(1); // TODO: 2020-01-16 level up
-        Random rand= new Random();
-        int pos= rand.nextInt(9);
-        //lady= new Frog(logs[pos].getX()+10,logs[pos].getY(),true);
+
         home();
         addKeyListener(this);
     }
@@ -68,14 +66,12 @@ class GamePanel extends JPanel implements KeyListener {
         }
     }
 
-
-
     public void load(int level){
         int lane=1;
         for(int i=0;i<5;i++) {
             for(int j=1;j<4;j++){
-                cars[i]=new Car(j,lane,level);
-                logs[i]=new Log(j,lane,level);
+                cars.add(new Car(j,lane,level));
+                logs.add(new Log(j,lane,level));
             }
             lane++;
             if (lane==5){

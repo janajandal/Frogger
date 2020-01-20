@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Log {
-    private int dir,speed,imageNum,place,restart;
+    private int dir,speed,imageNum,replace,restart;
     private Image pic;
     private int frame;
     private  Rectangle rect;
@@ -14,19 +14,19 @@ public class Log {
         Random rand=new Random();
         if(lane % 2 == 0) {
             dir=LEFT;
-            this.place=541+(place*2);
+            replace=674;
             restart=0;
         }
         else {
             dir=RIGHT;
-            this.place=30;
+            replace=0;
             restart=674;
         }
         imageNum=1;
 
         String file = String.format("Obstacle/%d/log%d.png", dir, imageNum);
         pic = new ImageIcon(file).getImage();
-        rect=new Rectangle(this.place,130+(lane*48),pic.getWidth(null),pic.getHeight(null));
+        rect=new Rectangle(place*100,130+(lane*48),pic.getWidth(null),pic.getHeight(null));
         speed=1*level;
     }
 
@@ -45,12 +45,12 @@ public class Log {
     public void move(){
         rect.setLocation(rect.x+speed*dir,rect.y);
         if((rect.x>restart && dir==RIGHT) || (rect.x<restart && dir==LEFT)){
-            rect.x=place;
+            rect.x=replace;
         }
 
     }
     public void checkFall(Frog frog){
-        boolean near = false;
+        boolean near = frog.getY()<360;
        if (near) {
             if (rect.contains(frog.getX(), frog.getY())) {
                 frog.setX(rect.x);
@@ -66,6 +66,6 @@ public class Log {
 
     public void draw(Graphics g){
         g.drawImage(pic, rect.x, rect.y, 48, 48, null);
-        g.drawRect(rect.x,rect.y,rect.width,rect.height);
+
     }
 }
