@@ -3,10 +3,11 @@ import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.Random;
 import javax.swing.*;
-
+import java.util.concurrent.CountDownLatch;
 
 public class Frogger extends JFrame implements ActionListener{
     Timer myTimer;
+
     GamePanel game;
 
     public Frogger() {
@@ -19,7 +20,9 @@ public class Frogger extends JFrame implements ActionListener{
 		setResizable(false);
 		pack();		
 		setVisible(true);
+
     }
+
 
     public void start(){
         myTimer.start();
@@ -46,7 +49,7 @@ class GamePanel extends JPanel implements KeyListener {
     private ArrayList<Log>logs= new ArrayList<Log>();
     private ArrayList<Rectangle>homes=new ArrayList<Rectangle>();
     private Image back = new ImageIcon("back.png").getImage();
-
+    Counter counter;
 
     public GamePanel(Frogger m) {
         keys = new boolean[KeyEvent.KEY_LAST+1];
@@ -54,7 +57,7 @@ class GamePanel extends JPanel implements KeyListener {
 
         player = new Frog(310, 654);
         load(1); // TODO: 2020-01-16 level up
-
+        counter= new Counter(450);
         home();
         addKeyListener(this);
     }
@@ -88,13 +91,14 @@ class GamePanel extends JPanel implements KeyListener {
 
 
     public void move() {
+
         for (Car car: cars) {
             car.move();
             car.checkHit(player);
         }
         for (Log log:logs) {
             log.move();
-            log.checkFall(player);
+            log.checkLog(player);
         }
 
         for (Rectangle h: homes) {
@@ -103,8 +107,8 @@ class GamePanel extends JPanel implements KeyListener {
             }
         }
 
-		if(player.getY() == 60) {
-            System.out.println("fun");
+		if(player.getY() == 40) {
+            player.loseLive();
 
 		} else if(keys[KeyEvent.VK_UP]){
 			player.verticalMove(-1);
@@ -125,7 +129,10 @@ class GamePanel extends JPanel implements KeyListener {
 			keys[KeyEvent.VK_LEFT] = false;
 		}
 		player.frogJump();
-
+        counter.countDown();
+        if(counter.left()<=0){
+            player.loseLive();
+        }
 		Point mouse = MouseInfo.getPointerInfo().getLocation();
 		Point offset = getLocationOnScreen();
 		if(keys[KeyEvent.VK_R]){
@@ -146,6 +153,7 @@ class GamePanel extends JPanel implements KeyListener {
     }
 
     public void paint(Graphics g){
+
 		g.drawImage(backPic, 0, 0, 672, 744, null);
         player.jump(g);
 
@@ -158,8 +166,9 @@ class GamePanel extends JPanel implements KeyListener {
             log.draw(g);
         }
         g.setColor(Color.white);
-        Font font=new Font("Copperplate Gothic Bold",3,15);
+        Font font=new Font("Copperplate Gothic Bold",3,25);
         g.setFont(font);
-        g.drawString(Integer.toString(player.getPoints()),119,17);
+        g.drawString(Integer.toString(player.getPoints()),119,22);
+        g.drawString(counter.toString(),570,727);
     }
 }

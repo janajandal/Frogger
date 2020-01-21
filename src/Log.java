@@ -49,19 +49,18 @@ public class Log {
         }
 
     }
-    public void checkFall(Frog frog){
-        boolean near = frog.getY()<360;
+    public void checkLog(Frog frog){
+       boolean near = frog.getY()<360;
        if (near) {
-            if (rect.contains(frog.getX(), frog.getY())) {
+           if (rect.contains(frog.getX(), frog.getY())) {
                 frog.setX(rect.x);
                 frog.setY(rect.y);
-            } else {
+           } else {
                 frog.loseLive();
                 frog.isDead();
-                    // TODO: 2020-01-17 call function that draws gameOver from Frog
-                }
+            // TODO: 2020-01-17 call function that draws gameOver from Frog
+           }
        }
-
     }
 
     public void draw(Graphics g){
