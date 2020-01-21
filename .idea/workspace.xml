@@ -43,7 +43,14 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.StartMenu">
+    <configuration name="StartMenu" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="StartMenu" />
+      <module name="Frogger" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Unnamed" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Frogger" />
       <module name="Frogger" />
@@ -51,6 +58,11 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.StartMenu" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -76,7 +88,8 @@
       <workItem from="1579190527285" duration="12213000" />
       <workItem from="1579298155295" duration="9837000" />
       <workItem from="1579447646253" duration="3796000" />
-      <workItem from="1579535741471" duration="6222000" />
+      <workItem from="1579535741471" duration="7550000" />
+      <workItem from="1579612324808" duration="2576000" />
     </task>
     <servers />
   </component>

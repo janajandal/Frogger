@@ -7,7 +7,6 @@ import java.util.concurrent.CountDownLatch;
 
 public class Frogger extends JFrame implements ActionListener{
     Timer myTimer;
-
     GamePanel game;
 
     public Frogger() {
@@ -28,6 +27,10 @@ public class Frogger extends JFrame implements ActionListener{
         myTimer.start();
     }
 
+    public void ggPic(Graphics g){
+        Image img= new ImageIcon("gg.jpg").getImage();
+        g.drawImage(img,204,364,null);
+    }
     public void actionPerformed(ActionEvent evt) {
         game.move();
         game.repaint();
@@ -60,6 +63,8 @@ class GamePanel extends JPanel implements KeyListener {
         counter= new Counter(450);
         home();
         addKeyListener(this);
+
+
     }
 
     public void home(){
@@ -91,7 +96,6 @@ class GamePanel extends JPanel implements KeyListener {
 
 
     public void move() {
-
         for (Car car: cars) {
             car.move();
             car.checkHit(player);
@@ -100,13 +104,12 @@ class GamePanel extends JPanel implements KeyListener {
             log.move();
             log.checkLog(player);
         }
-
         for (Rectangle h: homes) {
             if(h.contains(player.getY(),player.getX())){
                 player.incHome();
+                player.addPoints(counter.left()*10);
             }
         }
-
 		if(player.getY() == 40) {
             player.loseLive();
 
@@ -153,7 +156,9 @@ class GamePanel extends JPanel implements KeyListener {
     }
 
     public void paint(Graphics g){
-
+        if(player.isDead()){
+            mainFrame.ggPic(g);
+        }
 		g.drawImage(backPic, 0, 0, 672, 744, null);
         player.jump(g);
 

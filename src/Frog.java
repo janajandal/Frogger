@@ -20,11 +20,9 @@ public class Frog {
 
 		loadPics();
     }
-    public void isDead(){
-        if(lives<=0){
-           // ggPic(g);
-            System.out.println("death awaits us all");
-        }
+    public boolean isDead(){
+        return (lives<=0);
+
     }
     public int getY() {
         return y;
@@ -125,10 +123,7 @@ public class Frog {
 			}
 		}
     }
-    public void ggPic(Graphics g){
-        Image img= new ImageIcon("gg.jpg").getImage();
-        g.drawImage(img,204,364,null);
-    }
+
 
 }
 

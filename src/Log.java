@@ -6,7 +6,6 @@ import java.awt.*;
 public class Log {
     private int dir,speed,imageNum,replace,restart;
     private Image pic;
-    private int frame;
     private  Rectangle rect;
     private static final int LEFT = -1, RIGHT = 1;
     Random random=new Random();
