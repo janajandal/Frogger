@@ -15,13 +15,13 @@ public class Log {
     	w = pic.getWidth(null);
     	h = pic.getHeight(null);
     	
-    	if(lane == 2) {
+    	if(lane % 2==0) {
     		dir = RIGHT;
     		replace = 0;
-            limit = 542;
+            limit = 488;
     	} else {
     		dir = LEFT;
-    		replace = 542;
+    		replace = 488;
             limit = 0;
     	}
     	speed = 1;

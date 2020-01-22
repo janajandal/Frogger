@@ -16,12 +16,12 @@ public class Car {
     	
     	if(lane%2 == 0) {
     		dir = LEFT;
-    		replace = 542;
+    		replace = 488;
             limit = 0;
     	} else {
     		dir = RIGHT;
     		replace = 0;
-            limit = 542;
+            limit = 488;
     	}
     	speed = 1;
     	rect = new Rectangle(replace, 482 - lane*38, w, h);

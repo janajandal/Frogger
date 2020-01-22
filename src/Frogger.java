@@ -161,13 +161,18 @@ class GamePanel extends JPanel implements KeyListener {
 
     public void load() {
         for(int i = 0; i < 5; i++) {
-        	cars.add(new Car(i));
-        }
+
+				cars.add(new Car(i));
+				logs.add(new Log(i));
+			}
+        /*
         //turtles.add(new Turtle(lvl, 0));
         logs.add(new Log(1));
         logs.add(new Log(2));
         //turtles.add(new Turtle(lvl, 3));
         logs.add(new Log(4));
+
+         */
     }
 
 	public void keyTyped(KeyEvent e) {}
