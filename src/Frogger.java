@@ -86,13 +86,13 @@ class GamePanel extends JPanel implements KeyListener {
 		} else if(keys[KeyEvent.VK_UP] && player.getY() > 64){
 			player.verticalMove(-1);
 			player.stayStill();
-
 			keys[KeyEvent.VK_UP] = false;
+			points+=10;
 		} else if(keys[KeyEvent.VK_DOWN] && player.getY() < 558){
 			player.verticalMove(1);
 			player.stayStill();
 			keys[KeyEvent.VK_DOWN] = false;
-			points+=10;
+
 		} else if(keys[KeyEvent.VK_RIGHT]){
 			if(player.getY() >= 292 && player.getX() >= 490) {
 				points+=50;
@@ -122,13 +122,23 @@ class GamePanel extends JPanel implements KeyListener {
 		}
 		if(player.getY() < 292 && player.getY() > 64){		
 			boolean drown = true;
+			Log on;
 			for(Log l : logs) {
-				drown = !l.checkCollision(player) && drown;
+				if (!l.checkCollision(player) && drown) {
+					drown = true;
+
+				}
+				else {
+					drown = false;
+					player.followLog(l.getSpeed(),l.getDir());
+				}
+
 			}
 			if(drown) {
 				lives--;
 				player.frogDeath();
 			}
+
 		}
 		if(counter.left()<=0){
             lives--;
