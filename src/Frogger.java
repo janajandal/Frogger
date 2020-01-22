@@ -157,7 +157,6 @@ class GamePanel extends JPanel implements KeyListener {
     public void paint(Graphics g){
        if(player.isDead()){
            gg.setVisible(true);
-
            gg.write(player.getPoints());
         }
 		g.drawImage(backPic, 0, 0, 672, 744, null);
