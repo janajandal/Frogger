@@ -22,10 +22,13 @@ public class Alligator {
         rect=new Rectangle(x,y,pic.getWidth(null),pic.getHeight(null));
         speed=2*level;
     }
+    /*
     public void checkEat(Frog frog){
         if(rect.contains(frog.getX(),frog.getY())){
             frog.loseLive();
         }
     }
+
+     */
 
 }

@@ -8,7 +8,7 @@ public class Frog {
 	private int[] deadPos;
 	private double frame;
 	private boolean rebirth;
-	
+	private int points;
 	private Image[][][] frogPics;
 	private Image[] deadPics, sitPics;
 	
@@ -45,7 +45,7 @@ public class Frog {
 		return rebirth;
 	}
 	
-	public void horizantalMove(int dist) {
+	public void horizontalMove(int dist) {
 		dir = dist < 0 ? LEFT : RIGHT;
 		x += dist*38;
 	}
