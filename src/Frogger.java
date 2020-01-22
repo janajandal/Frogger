@@ -113,18 +113,23 @@ class GamePanel extends JPanel implements KeyListener {
 				player.frogDeath();
 			}
 		}
-		boolean drown = true;
 		for(Log l : logs) {
 			l.move();
-			if(player.getY() < 292 && l.checkCollision(player)) {
-				drown = false;
+		}
+		if(player.getY() < 292 && player.getY() > 64){		
+			boolean drown = true;
+			for(Log l : logs) {
+				drown = l.checkCollision(player) ? false : drown;
+			}
+			if(drown) {
+				lives--;
+				player.frogDeath();
 			}
 		}
-		if(player.getY() < 292 && drown) {
-			lives--;
-			player.frogDeath();
-		}
+<<<<<<< HEAD
 
+=======
+>>>>>>> master
 		player.frogJump();
 
 		Point mouse = MouseInfo.getPointerInfo().getLocation();
