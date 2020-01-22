@@ -41,8 +41,9 @@ public class Frogger extends JFrame implements ActionListener{
 class GamePanel extends JPanel implements KeyListener {
 	private Frogger mainFrame;
 	private boolean[] keys;
-	private Font font;
-	private Frog player;
+    private Frog player;
+    private Font font;
+    private int home;
 	private GameOver gg;
 	private Image back;
 	private int w, h, lives;
@@ -68,7 +69,7 @@ class GamePanel extends JPanel implements KeyListener {
 		lives = 3;
 
 		//turtles = new ArrayList<Turtle>();
-		load(1);
+		load();
 	}
 
 	public void addNotify() {
@@ -85,21 +86,25 @@ class GamePanel extends JPanel implements KeyListener {
 		} else if(keys[KeyEvent.VK_UP] && player.getY() > 64){
 			player.verticalMove(-1);
 			player.stayStill();
+
 			keys[KeyEvent.VK_UP] = false;
 		} else if(keys[KeyEvent.VK_DOWN] && player.getY() < 558){
 			player.verticalMove(1);
 			player.stayStill();
 			keys[KeyEvent.VK_DOWN] = false;
+			points+=10;
 		} else if(keys[KeyEvent.VK_RIGHT]){
 			if(player.getY() >= 292 && player.getX() >= 490) {
-				return;
+				points+=50;
+				home++;
 			}
 			player.horizontalMove(1);
 			player.stayStill();
 			keys[KeyEvent.VK_RIGHT] = false;
 		} else if(keys[KeyEvent.VK_LEFT]){
 			if(player.getY() >= 292 && player.getX() <= 34) {
-				return;
+				points+=50;
+				home++;
 			}
 			player.horizontalMove(-1);
 			player.stayStill();
@@ -129,6 +134,12 @@ class GamePanel extends JPanel implements KeyListener {
             lives--;
             player.frogDeath();
         }
+		if(home==5){
+		    points+=1000+(counter.left()*10);
+		    home=0;
+		    player= new Frog(w/2,520);
+		    lives=3;
+        }
 		player.frogJump();
 
 		Point mouse = MouseInfo.getPointerInfo().getLocation();
@@ -138,15 +149,15 @@ class GamePanel extends JPanel implements KeyListener {
 		}
 	}
 
-    public void load(int lvl) {
+    public void load() {
         for(int i = 0; i < 5; i++) {
-        	cars.add(new Car(lvl, i));
+        	cars.add(new Car(i));
         }
         //turtles.add(new Turtle(lvl, 0));
-        logs.add(new Log(lvl, 1));
-        logs.add(new Log(lvl, 2));
+        logs.add(new Log(1));
+        logs.add(new Log(2));
         //turtles.add(new Turtle(lvl, 3));
-        logs.add(new Log(lvl, 4));
+        logs.add(new Log(4));
     }
 
 	public void keyTyped(KeyEvent e) {}
@@ -191,7 +202,7 @@ class GamePanel extends JPanel implements KeyListener {
     public void gameFont() {
     	InputStream is = GamePanel.class.getResourceAsStream("frogger_font.ttf");
     	try {
-    		font = Font.createFont(Font.TRUETYPE_FONT, is);
+            font = Font.createFont(Font.TRUETYPE_FONT, is);
     	} catch(IOException | FontFormatException ex) {
     		System.out.println(ex);
     	}

@@ -8,7 +8,7 @@ public class Car {
 	private Image pic;
     private  Rectangle rect;
 
-    public Car(int lvl, int lane) {
+    public Car(int lane) {
     	String file = String.format("road/%d.png", lane);
     	pic = new ImageIcon(file).getImage();
     	w = pic.getWidth(null);

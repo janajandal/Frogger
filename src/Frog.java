@@ -31,8 +31,9 @@ public class Frog {
 	public int getY() {
 		return y;
 	}
-	
-	public Rectangle getRect() {
+
+
+    public Rectangle getRect() {
 		return new Rectangle(x, y, 38, 38);
 	}
 	
@@ -70,6 +71,7 @@ public class Frog {
 		deadPos[Y] = y;
 		x = 600;
 		y = 0;
+		dir=UP;
 		frame = 0;
 	}
 	

@@ -5,11 +5,11 @@ import java.util.ArrayList;
 
 public class Log {
     private static final int LEFT = -1, RIGHT = 1;
-	private int dir, lane, limit, replace, speed, w, h;
+	private int dir, limit, replace, speed, w, h;
 	private Image pic;
     private  Rectangle rect;
 
-    public Log(int lvl, int lane) {
+    public Log(int lane) {
     	String file = String.format("river/%d.png", lane);
     	pic = new ImageIcon(file).getImage();
     	w = pic.getWidth(null);
