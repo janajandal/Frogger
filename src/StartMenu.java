@@ -68,6 +68,7 @@ public class StartMenu extends JFrame {
     	@Override
     	public void actionPerformed(ActionEvent evt) {
     		Frogger frame = new Frogger();
+    		frame.start();
     		setVisible(false);
     	}
     }

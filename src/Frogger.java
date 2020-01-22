@@ -43,12 +43,12 @@ class GamePanel extends JPanel implements KeyListener {
 	private boolean[] keys;
 	private Font font;
 	private Frog player;
-	private gameOver gg;
+	private GameOver gg;
 	private Image back;
 	private int w, h, lives;
-	private Counter counter;
-	private ArrayList<Car> cars;
-	private ArrayList<Log> logs;
+	private Counter counter= new Counter(450);
+	private ArrayList<Car> cars= new ArrayList<Car>();
+	private ArrayList<Log> logs=new ArrayList<Log>();
 	private int points;
 	//private ArrayList<Turtle> turtles;
 
@@ -64,11 +64,9 @@ class GamePanel extends JPanel implements KeyListener {
 		setPreferredSize(new Dimension(w, h));
 
 		player = new Frog(w/2, 520);
-
+        points=0;
 		lives = 3;
 
-		cars = new ArrayList<Car>();
-		logs = new ArrayList<Log>();
 		//turtles = new ArrayList<Turtle>();
 		load(1);
 	}
@@ -80,6 +78,7 @@ class GamePanel extends JPanel implements KeyListener {
 	}
 
 	public void move() {
+	    counter.countDown();
 		if(player.getY() == 64 || player.newLife()) {
 			System.out.println("new");
 			player = new Frog(w/2, 520);
@@ -119,17 +118,17 @@ class GamePanel extends JPanel implements KeyListener {
 		if(player.getY() < 292 && player.getY() > 64){		
 			boolean drown = true;
 			for(Log l : logs) {
-				drown = l.checkCollision(player) ? false : drown;
+				drown = !l.checkCollision(player) && drown;
 			}
 			if(drown) {
 				lives--;
 				player.frogDeath();
 			}
 		}
-<<<<<<< HEAD
-
-=======
->>>>>>> master
+		if(counter.left()<=0){
+            lives--;
+            player.frogDeath();
+        }
 		player.frogJump();
 
 		Point mouse = MouseInfo.getPointerInfo().getLocation();
@@ -161,10 +160,13 @@ class GamePanel extends JPanel implements KeyListener {
     }
 
     public void paint(Graphics g) {
+	    /*
 		if(player.isDead()){
 			gg.setVisible(true);
 			gg.write(points);
 		}
+
+	     */
 		g.drawImage(back, 0, 0, 542, 600, null);
 		for(Car c : cars) {
 			c.draw(g);
@@ -178,22 +180,20 @@ class GamePanel extends JPanel implements KeyListener {
     		player.jump(g);
     	}
 
-    	g.setFont(font.deriveFont(18f));
+    	//g.setFont(font.deriveFont(18f));
     	g.drawString("TIME", 400, 590);
     	g.setColor(Color.white);
 		g.drawString(Integer.toString(points),119,22);
-		g.drawString(counter.toString(),570,727);
-		g.drawString(gg.getScore(),546,22);
+		g.drawString(counter.toString(),470,627);
+//        g.drawString(gg.getScore(),546,22);
     }
 
     public void gameFont() {
     	InputStream is = GamePanel.class.getResourceAsStream("frogger_font.ttf");
     	try {
     		font = Font.createFont(Font.TRUETYPE_FONT, is);
-    	} catch(IOException ex) {
-    		System.out.println(ex);
-    	} catch(FontFormatException ex) {
+    	} catch(IOException | FontFormatException ex) {
     		System.out.println(ex);
     	}
-    }
+	}
 }

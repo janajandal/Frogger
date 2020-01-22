@@ -12,7 +12,6 @@ public class Frog {
 	private Image[][][] frogPics;
 	private Image[] deadPics, sitPics;
 	
-	
 	public Frog(int x, int y) {
 		this.x = x;
 		this.y = y;
@@ -44,15 +43,14 @@ public class Frog {
 	public boolean newLife() {
 		return rebirth;
 	}
-	
-	public void horizontalMove(int dist) {
-		dir = dist < 0 ? LEFT : RIGHT;
-		x += dist*38;
-	}
-	
+
 	public void verticalMove(int dist) {
 		dir = dist < 0 ? UP : DOWN;
 		y += dist*38;
+	}
+	public void horizontalMove(int dist) {
+		dir = dist < 0 ? LEFT : RIGHT;
+		x += dist*38;
 	}
 	
     public void stayStill() {
@@ -90,14 +88,14 @@ public class Frog {
 		sitPics = new Image[2];
 		for(int i = 0; i < 4; i++){
 			for(int j = 0; j < 5; j ++) {
-				String file = String.format("frog/green/frog%d/frog%d.png", i, j);
+				String file = String.format("green/frog%d/frog%d.png", i, j);
 				Image img = new ImageIcon(file).getImage();
 				frogPics[GREEN][i][j] = img.getScaledInstance(38 ,38 ,Image.SCALE_SMOOTH);
 			}
 		}
 		for(int i = 0; i < 4; i++){
 			for(int j = 0; j < 5; j ++) {
-				String file = String.format("frog/purple/frog%d/frog%d.png", i, j);
+				String file = String.format("purple/frog%d/frog%d.png", i, j);
 				Image img = new ImageIcon(file).getImage();
 				frogPics[PURPLE][i][j] = img.getScaledInstance(38 ,38 ,Image.SCALE_SMOOTH);
 			}
