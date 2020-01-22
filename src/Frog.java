@@ -32,6 +32,9 @@ public class Frog {
 		return y;
 	}
 
+    public void followLog(int speed,int dir){
+	    x+=dir*speed;
+    }
 
     public Rectangle getRect() {
 		return new Rectangle(x, y, 38, 38);

@@ -35,7 +35,14 @@ public class Log {
     public int getY() {
     	return rect.y;
     }
-    
+
+    public int getSpeed() {
+        return speed;
+    }
+    public int getDir(){
+        return dir;
+    }
+
     public void move() {
     	rect.setLocation(rect.x + speed*dir, rect.y);
         if((rect.x > limit && dir == RIGHT) || (rect.x < limit && dir == LEFT)){
