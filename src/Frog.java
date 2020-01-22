@@ -12,7 +12,7 @@ public class Frog {
         this.x=x;
         this.y=y;
         frame = 4;
-        lives=3;
+        lives=3; // TODO: 2020-01-21 picture of lives disappear should be easy 
         //points=0;
         home=0;
 		dir = UP;
@@ -20,7 +20,7 @@ public class Frog {
 
 		loadPics();
     }
-    public boolean isDead(){
+    public boolean isDead(){ // TODO: 2020-01-21 for drowning/hit graphics 
         return (lives<=0);
 
     }
@@ -43,6 +43,7 @@ public class Frog {
         lives--;
         x=310;
         y=654;
+        dir=UP;
         isDead();
     }
     public void horizontalMove(int dist) {
@@ -66,7 +67,7 @@ public class Frog {
     public void addPoints(int points){
         this.points+=points;
     }
-    public void incHome(){
+    public void incHome(){ // TODO: 2020-01-21 frog stays home graphic 
         home++;
         points+=50;
         System.out.println("home sweet home");

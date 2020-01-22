@@ -57,7 +57,7 @@ public class Log {
            } else {
                 frog.loseLive();
                 frog.isDead();
-            // TODO: 2020-01-17 call function that draws gameOver from Frog
+            // TODO: 2020-01-17 fix collision
            }
        }
     }

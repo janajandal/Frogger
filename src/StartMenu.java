@@ -23,7 +23,6 @@ public class StartMenu extends JFrame {
     	startBtn.setBorderPainted(false);
     	startBtn.setLocation(backPic.getIconWidth()/2 - startPic.getIconWidth()/2, 420);
 		layeredPane.add(startBtn, 2);
-;
 		setContentPane(layeredPane);
 		pack();
 		setVisible(true);

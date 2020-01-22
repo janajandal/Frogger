@@ -26,6 +26,9 @@
     <property name="settings.editor.selected.configurable" value="settings.github" />
   </component>
   <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\User\IdeaProjects\Frogger\Obstacle" />
       <recent name="C:\Users\User\IdeaProjects\Frogger" />
@@ -89,7 +92,8 @@
       <workItem from="1579298155295" duration="9837000" />
       <workItem from="1579447646253" duration="3796000" />
       <workItem from="1579535741471" duration="7550000" />
-      <workItem from="1579612324808" duration="2576000" />
+      <workItem from="1579612324808" duration="4063000" />
+      <workItem from="1579650167543" duration="6859000" />
     </task>
     <servers />
   </component>
@@ -108,5 +112,8 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/Frogger$StartMenu.ic" NAME="StartMenu Coverage Results" MODIFIED="1579652844682" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>

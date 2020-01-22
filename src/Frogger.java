@@ -53,18 +53,17 @@ class GamePanel extends JPanel implements KeyListener {
     private ArrayList<Rectangle>homes=new ArrayList<Rectangle>();
     private Image back = new ImageIcon("back.png").getImage();
     Counter counter;
+    gameOver gg;
 
     public GamePanel(Frogger m) {
         keys = new boolean[KeyEvent.KEY_LAST+1];
         mainFrame = m;
-
+        gg= new gameOver();
         player = new Frog(310, 654);
         load(1); // TODO: 2020-01-16 level up
         counter= new Counter(450);
         home();
         addKeyListener(this);
-
-
     }
 
     public void home(){
@@ -156,8 +155,10 @@ class GamePanel extends JPanel implements KeyListener {
     }
 
     public void paint(Graphics g){
-        if(player.isDead()){
-            mainFrame.ggPic(g);
+       if(player.isDead()){
+           gg.setVisible(true);
+
+           gg.write(player.getPoints());
         }
 		g.drawImage(backPic, 0, 0, 672, 744, null);
         player.jump(g);
@@ -175,5 +176,7 @@ class GamePanel extends JPanel implements KeyListener {
         g.setFont(font);
         g.drawString(Integer.toString(player.getPoints()),119,22);
         g.drawString(counter.toString(),570,727);
+        g.drawString(gg.getScore(),546,22);
+
     }
 }
