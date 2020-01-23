@@ -14,7 +14,7 @@ public class Car {
     	w = pic.getWidth(null);
     	h = pic.getHeight(null);
     	
-    	if(lane%2 == 0) {
+    	if(lane%2==0) {
     		dir = LEFT;
     		replace = 542;
             limit = -w;

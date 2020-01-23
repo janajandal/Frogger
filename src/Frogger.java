@@ -48,18 +48,16 @@ class GamePanel extends JPanel implements KeyListener {
 	private boolean[] keys;
     private Frog player;
     private Font font;
-    private int homeNum;
 	private Image back,sit;
-	private int w, h, lives,lvl;
+	private int w, h, lives,lvl,highscore;
 	private Lady lady;
-	private int highscore;
-	private Counter counter= new Counter(450);
-	private ArrayList<Car> cars= new ArrayList<Car>();
-	private ArrayList<Log> logs=new ArrayList<Log>();
+	private Counter counter;
+	private ArrayList<Car> cars;
+	private ArrayList<Log> logs;
 	private int points;
 	private MouseEvent e;
-	private ArrayList<Rectangle>homes;
-	private ArrayList<Rectangle>empty;
+	private ArrayList<Rectangle>homes,empty;
+
 	private ArrayList<Turtle> turtles;
 	private Snake serpent;
 
@@ -76,19 +74,12 @@ class GamePanel extends JPanel implements KeyListener {
 		setPreferredSize(new Dimension(w, h));
 
 		sit = new ImageIcon("frog/sit.png").getImage().getScaledInstance(38, 38, Image.SCALE_SMOOTH);
-
+		counter= new Counter(450);
 		player = new Frog(w/2, 520);
         points=0;
         lvl=1;
-		lives = 3;
 
-		empty = new ArrayList<Rectangle>();
-		homes = new ArrayList<Rectangle>();
-		cars = new ArrayList<Car>();
-		logs = new ArrayList<Log>();
-		turtles = new ArrayList<Turtle>();
-		load(lvl);
-		home();
+		reset();
 		Random rand = new Random();
 		int pos= rand.nextInt(logs.size());
 		System.out.println(pos);
@@ -96,12 +87,7 @@ class GamePanel extends JPanel implements KeyListener {
 		highscore=checkHS();
 
 	}
-	public void home(){
-		for(int i=0;i<5;i++){
-			Rectangle rect=new Rectangle(30*i,62*i,60,41);
-			homes.add(rect);
-		}
-	}
+
 	public void addNotify() {
 		super.addNotify();
 		requestFocus();
@@ -368,13 +354,17 @@ class GamePanel extends JPanel implements KeyListener {
     		player.jump(g);
     	}
 
+    	for(int i = 0; i < homes.size(); i++) {
+    		g.drawImage(sit, homes.get(i).x + 7, 60, 38, 38, null);
+    	}
+
 		g.setColor(Color.white);
-		g.setFont(font.deriveFont(11f));
+//		g.setFont(font.deriveFont(11f));
 		g.drawString("SCORE", 5, 15);
 		g.drawString("HIGH SCORE", 205, 15);
 		g.drawString("TIME", 400, 590);
 		g.drawString(Integer.toString(points),119,15);
-		g.drawString(counter.toString(),400,590);
+		g.drawString(counter.toString(),440,590);
 		g.drawString(String.valueOf(highscore),446,15);
     }
 
