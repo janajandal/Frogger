@@ -47,52 +47,60 @@ class GamePanel extends JPanel implements KeyListener {
 	private Frogger mainFrame;
 	private boolean[] keys;
     private Frog player;
-    private Font font;
-	private Image back,sit;
-	private int w, h, lives,lvl,highscore;
+	private Font font;
+	private Image back, sit;
+	private int w, h, lives,lvl,highscore,points;
 	private Lady lady;
 	private Counter counter;
 	private ArrayList<Car> cars;
 	private ArrayList<Log> logs;
-	private int points;
 	private MouseEvent e;
 	private ArrayList<Rectangle>homes,empty;
-
 	private ArrayList<Turtle> turtles;
 	private Snake serpent;
-
+	
 	public GamePanel(Frogger m) {
 		mainFrame = m;
-		keys = new boolean[KeyEvent.KEY_LAST+1];
+		keys = new boolean[KeyEvent.KEY_LAST + 1];
 		addKeyListener(this);
 		addMouseListener(mouse);
 		gameFont();
 
-		back = new ImageIcon("back.png").getImage();	//542x600
+		back = new ImageIcon("back.png").getImage();    //542x600
 		w = back.getWidth(this);
 		h = back.getHeight(this);
 		setPreferredSize(new Dimension(w, h));
 
 		sit = new ImageIcon("frog/sit.png").getImage().getScaledInstance(38, 38, Image.SCALE_SMOOTH);
-		counter= new Counter(450);
-		player = new Frog(w/2, 520);
-        points=0;
-        lvl=1;
-
+		counter = new Counter(450);
+		player = new Frog(w / 2, 520);
+		points = 0;
+		lvl = 1;
 		reset();
 		Random rand = new Random();
-		int pos= rand.nextInt(logs.size());
+		int pos = rand.nextInt(logs.size());
 		System.out.println(pos);
-		lady= new Lady(logs.get(pos));
-		highscore=checkHS();
-
+		lady = new Lady(logs.get(pos));
+		highscore = checkHS();
+		reset();
 	}
+	public void reset() {
+		counter= new Counter(450);
+		empty = new ArrayList<Rectangle>();
+		homes = new ArrayList<Rectangle>();
+		cars = new ArrayList<Car>();
+		logs = new ArrayList<Log>();
+		turtles = new ArrayList<Turtle>();
 
+		load(lvl);
+	}
+	
 	public void addNotify() {
 		super.addNotify();
 		requestFocus();
         mainFrame.start();
 	}
+	
 	public void checkProgress() {
 		if(lvl == 3) {
 			System.out.println("close the program you're done");
@@ -104,12 +112,13 @@ class GamePanel extends JPanel implements KeyListener {
 			reset();
 		}
 	}
-
+	
 	public void movePlayer() {
 		counter.countDown();
 		if(player.newLife()) {
 			player = new Frog(w/2, 520);
-		} else if(keys[KeyEvent.VK_UP] && player.getY() > 64){
+		}
+		if(keys[KeyEvent.VK_UP] && player.getY() > 64){
 			player.verticalMove(-1);
 			player.stayStill();
 			keys[KeyEvent.VK_UP] = false;
@@ -142,6 +151,7 @@ class GamePanel extends JPanel implements KeyListener {
             System.out.println("("+(mouse.x-offset.x)+", "+(mouse.y-offset.y)+")");
 		}
 	}
+	
 	public void moveObstacles() {
 		for(Car c : cars) {
 			c.move();
@@ -163,7 +173,7 @@ class GamePanel extends JPanel implements KeyListener {
 				player.frogDeath();
 			}
 		}
-
+		
 		if(player.getY() == 64) {
 			boolean dead = true;
 			for(Rectangle r : empty) {
@@ -182,7 +192,7 @@ class GamePanel extends JPanel implements KeyListener {
 				player = new Frog(w/2, 520);
 				counter= new Counter(450);
 			}
-		} else if(player.getY() < 292){
+		} else if(player.getY() < 292){		
 			boolean drown = true;
 			for(Log l : logs) {
 				drown = l.checkCollision(player) ? false : drown;
@@ -292,18 +302,6 @@ class GamePanel extends JPanel implements KeyListener {
 			}
 		}
 	}
-	public void reset() {
-		lives = 3;
-
-		empty = new ArrayList<Rectangle>();
-		homes = new ArrayList<Rectangle>();
-		cars = new ArrayList<Car>();
-		logs = new ArrayList<Log>();
-		turtles = new ArrayList<Turtle>();
-		counter = new Counter(450);
-
-		load(lvl);
-	}
 	public boolean mousePressed(MouseEvent e){
 		return true;
 	}
@@ -311,7 +309,7 @@ class GamePanel extends JPanel implements KeyListener {
 	public boolean mouseReleased(MouseEvent e){
 		return true;
 	}
-
+    
 	public void keyTyped(KeyEvent e) {}
 
     public void keyPressed(KeyEvent e) {
@@ -321,11 +319,11 @@ class GamePanel extends JPanel implements KeyListener {
     public void keyReleased(KeyEvent e) {
     	keys[e.getKeyCode()] = false;
     }
-
+    
     public static int randint(int low, int high){
 		return (int)(Math.random()*(high-low+1)+low);
 	}
-
+    
     public void paint(Graphics g) {
 
 		if(lives<=0){
@@ -335,6 +333,7 @@ class GamePanel extends JPanel implements KeyListener {
 
 
 		g.drawImage(back, 0, 0, 542, 600, null);
+		
 		for(Car c : cars) {
 			c.draw(g);
 		}
@@ -347,33 +346,35 @@ class GamePanel extends JPanel implements KeyListener {
 		if(lvl == 2) {
 			serpent.draw(g);
 		}
-
+		
     	if(player.isDead()) {
     		player.die(g);
     	} else {
     		player.jump(g);
     	}
-
+    	
     	for(int i = 0; i < homes.size(); i++) {
     		g.drawImage(sit, homes.get(i).x + 7, 60, 38, 38, null);
     	}
-
-		g.setColor(Color.white);
-//		g.setFont(font.deriveFont(11f));
-		g.drawString("SCORE", 5, 15);
-		g.drawString("HIGH SCORE", 205, 15);
-		g.drawString("TIME", 400, 590);
+    	
+    	g.setColor(Color.white);
+    	//g.setFont(font.deriveFont(11f));
+    	g.drawString("SCORE", 5, 15);
+    	g.drawString("HIGH SCORE", 205, 15);
+    	
+    //	g.setFont(font.deriveFont(18f));
+    	g.drawString("TIME", 400, 590);
 		g.drawString(Integer.toString(points),119,15);
 		g.drawString(counter.toString(),440,590);
 		g.drawString(String.valueOf(highscore),446,15);
     }
-
+    
     public void gameFont() {
     	InputStream is = GamePanel.class.getResourceAsStream("frogger_font.ttf");
     	try {
-            font = Font.createFont(Font.TRUETYPE_FONT, is);
+    		font = Font.createFont(Font.TRUETYPE_FONT, is);
     	} catch(IOException | FontFormatException ex) {
-    		System.out.println(ex);
+    		System.out.println(ex);	
     	}
-	}
+    }
 }
