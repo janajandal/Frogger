@@ -46,9 +46,9 @@ class GamePanel extends JPanel implements KeyListener {
     private Frog player;
     private Font font;
     private int home;
-	private GameOver gg;
 	private Image back;
 	private int w, h, lives;
+	private Lady lady;
 	private int highscore;
 	private Counter counter= new Counter(450);
 	private ArrayList<Car> cars= new ArrayList<Car>();
@@ -129,7 +129,6 @@ class GamePanel extends JPanel implements KeyListener {
 		}
 		if(player.getY() < 292 && player.getY() > 64){		
 			boolean drown = true;
-			Log on;
 			for(Log l : logs) {
 				if (!l.checkCollision(player) && drown) {
 					drown = true;
@@ -156,6 +155,10 @@ class GamePanel extends JPanel implements KeyListener {
 		if(home==5){
 		  restart();
         }
+		if(lady.checkCollision(player)){
+			points+=200;
+			lady.followFrog(player);
+		}
 		player.frogJump();
 
 		Point mouse = MouseInfo.getPointerInfo().getLocation();

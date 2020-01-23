@@ -80,7 +80,7 @@ public class Frog {
 	
 	public void die(Graphics g) {
 		g.drawImage(deadPics[(int)Math.round(frame)], deadPos[X], deadPos[Y], 38, 38, null);
-		rebirth = frame == 4 ? true : false;
+		rebirth = frame == 4;
 	}
     
     public void sit(Graphics g, int column) {
@@ -98,13 +98,7 @@ public class Frog {
 				frogPics[GREEN][i][j] = img.getScaledInstance(38 ,38 ,Image.SCALE_SMOOTH);
 			}
 		}
-		for(int i = 0; i < 4; i++){
-			for(int j = 0; j < 5; j ++) {
-				String file = String.format("purple/frog%d/frog%d.png", i, j);
-				Image img = new ImageIcon(file).getImage();
-				frogPics[PURPLE][i][j] = img.getScaledInstance(38 ,38 ,Image.SCALE_SMOOTH);
-			}
-		}
+
 		for(int i = 0; i < 5; i++) {
 			String file = String.format("frog/dead/dead%d.png", i);
 			Image img = new ImageIcon(file).getImage();

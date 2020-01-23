@@ -49,7 +49,11 @@ public class Log {
             rect.x = replace;
         }
     }
-    
+
+    public Rectangle getRect() {
+        return rect;
+    }
+
     public boolean checkCollision(Frog player){
     	return rect.intersects(player.getRect());
     }
