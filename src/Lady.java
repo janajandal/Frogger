@@ -5,6 +5,7 @@ import java.util.Random;
 public class Lady {
     private int x,y,dir,limitx,limity;
     private double frame;
+    private boolean onFrog;
     private Log log;
     private Image[][] frogPics;
     private Rectangle rect;
@@ -24,7 +25,7 @@ public class Lady {
         }
         x=rand.nextInt(limitx);
         rect= new Rectangle(x,y,38,38);
-        frame=4;
+        frame=0;
         load();
     }
     public void followLog(){
@@ -38,15 +39,20 @@ public class Lady {
     public boolean checkCollision(Frog frog){
         return rect.intersects(frog.getRect());
     }
+
+    public void setOnFrog(boolean onFrog) {
+        this.onFrog = onFrog;
+    }
+
     public void draw(Graphics g) {
         Image sprite = frogPics[dir][(int)Math.round(frame)];
         g.drawImage(sprite, x, y, 38, 38, null);
     }
     public void load(){
-        frogPics= new Image[4][5];
-        for(int i = 0; i < 4; i++){
+        frogPics= new Image[2][5];
+        for(int i = 0; i < 2; i++){
             for(int j = 0; j < 5; j ++) {
-                String file = String.format("purple/frog%d/frog%d.png", i, j);
+                String file = String.format("frog/purple/frog%d/frog%d.png", i, j);
                 Image img = new ImageIcon(file).getImage();
                 frogPics[i][j] = img.getScaledInstance(38 ,38 ,Image.SCALE_SMOOTH);
             }

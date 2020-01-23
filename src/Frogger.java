@@ -51,6 +51,7 @@ class GamePanel extends JPanel implements KeyListener {
 	private Image back, sit;
 	private int w, h, lives,lvl,highscore,points;
 	private Lady lady;
+	private GameOver gg;
 	private Counter counter;
 	private ArrayList<Car> cars;
 	private ArrayList<Log> logs;
@@ -58,6 +59,7 @@ class GamePanel extends JPanel implements KeyListener {
 	private ArrayList<Rectangle>homes,empty;
 	private ArrayList<Turtle> turtles;
 	private Snake serpent;
+	private boolean gotLady;
 	
 	public GamePanel(Frogger m) {
 		mainFrame = m;
@@ -72,7 +74,7 @@ class GamePanel extends JPanel implements KeyListener {
 		setPreferredSize(new Dimension(w, h));
 
 		sit = new ImageIcon("frog/sit.png").getImage().getScaledInstance(38, 38, Image.SCALE_SMOOTH);
-		counter = new Counter(450);
+		counter = new Counter(1000);
 		player = new Frog(w / 2, 520);
 		points = 0;
 		lvl = 1;
@@ -82,10 +84,12 @@ class GamePanel extends JPanel implements KeyListener {
 		System.out.println(pos);
 		lady = new Lady(logs.get(pos));
 		highscore = checkHS();
+		gotLady=false;
+		lives=4;
 		reset();
 	}
 	public void reset() {
-		counter= new Counter(450);
+		counter= new Counter(1000);
 		empty = new ArrayList<Rectangle>();
 		homes = new ArrayList<Rectangle>();
 		cars = new ArrayList<Car>();
@@ -145,12 +149,8 @@ class GamePanel extends JPanel implements KeyListener {
 		}
 		player.frogJump();
 
-		Point mouse = MouseInfo.getPointerInfo().getLocation();
-		Point offset = getLocationOnScreen();
-		if(keys[KeyEvent.VK_R]){
-            System.out.println("("+(mouse.x-offset.x)+", "+(mouse.y-offset.y)+")");
 		}
-	}
+
 	
 	public void moveObstacles() {
 		for(Car c : cars) {
@@ -173,7 +173,7 @@ class GamePanel extends JPanel implements KeyListener {
 				player.frogDeath();
 			}
 		}
-		
+
 		if(player.getY() == 64) {
 			boolean dead = true;
 			for(Rectangle r : empty) {
@@ -190,7 +190,7 @@ class GamePanel extends JPanel implements KeyListener {
 
 			} else {
 				player = new Frog(w/2, 520);
-				counter= new Counter(450);
+				counter= new Counter(1000);
 			}
 		} else if(player.getY() < 292){		
 			boolean drown = true;
@@ -203,7 +203,7 @@ class GamePanel extends JPanel implements KeyListener {
 			if(drown) {
 				lives--;
 				player.frogDeath();
-				counter= new Counter(450);
+				counter= new Counter(1000);
 			} else {
 				int dir = ((player.getY() - 64)/38)%2 == 0 ? 1 : -1;
 				player.drift(lvl*dir);
@@ -213,13 +213,21 @@ class GamePanel extends JPanel implements KeyListener {
 			lives--;
 			player.frogDeath();
 			player= new Frog(w/2,520);
-			counter=new Counter(450);
+			counter=new Counter(1000);
 		}
 
 		if(lady.checkCollision(player)){
 			points+=200;
 			lady.followFrog(player);
+			gotLady=true;
 		}
+		if(gotLady){
+			lady.followFrog(player);
+		}
+		else{
+			lady.followLog();
+		}
+		System.out.println("lives"+lives);
 	}
 
 	public int checkHS(){
@@ -282,34 +290,7 @@ class GamePanel extends JPanel implements KeyListener {
 		}
 	}
 
-	public void gameOver(Graphics g){
-		setBackground(Color.BLACK);
-		Rectangle exit= new Rectangle(113,331,60,60);
-		Rectangle playag= new Rectangle(360,331,60,60);
-		g.drawRect(113,331,60,60);
-		g.drawString("EXIT",121,341);
-		g.drawRect(360,331,60,60);
-		g.drawString("PLAY AGAIN",368,341);
-		if(mousePressed(e)){
-			if(mouseReleased(e)){
-				Point pos = MouseInfo.getPointerInfo().getLocation();
-				if(exit.contains(pos)){
-					System.exit(0);
-				}
-				else if(playag.contains(pos)){
-					reset();
-				}
-			}
-		}
-	}
-	public boolean mousePressed(MouseEvent e){
-		return true;
-	}
 
-	public boolean mouseReleased(MouseEvent e){
-		return true;
-	}
-    
 	public void keyTyped(KeyEvent e) {}
 
     public void keyPressed(KeyEvent e) {
@@ -325,15 +306,14 @@ class GamePanel extends JPanel implements KeyListener {
 	}
     
     public void paint(Graphics g) {
-
 		if(lives<=0){
-			gameOver(g);
+			setVisible(false);
+			gg= new GameOver();
 			Writescore();
 		}
 
-
 		g.drawImage(back, 0, 0, 542, 600, null);
-		
+		//lady.draw(g);
 		for(Car c : cars) {
 			c.draw(g);
 		}
@@ -346,7 +326,7 @@ class GamePanel extends JPanel implements KeyListener {
 		if(lvl == 2) {
 			serpent.draw(g);
 		}
-		
+
     	if(player.isDead()) {
     		player.die(g);
     	} else {
