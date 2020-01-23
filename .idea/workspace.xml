@@ -47,6 +47,13 @@
     </option>
   </component>
   <component name="RunManager" selected="Application.StartMenu">
+    <configuration name="GameOver" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="GameOver" />
+      <module name="Frogger" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="StartMenu" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="StartMenu" />
       <module name="Frogger" />
@@ -61,9 +68,15 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Application.Unnamed" />
+      <item itemvalue="Application.GameOver" />
+      <item itemvalue="Application.StartMenu" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.StartMenu" />
+        <item itemvalue="Application.GameOver" />
       </list>
     </recent_temporary>
   </component>
@@ -94,7 +107,7 @@
       <workItem from="1579535741471" duration="7550000" />
       <workItem from="1579612324808" duration="4063000" />
       <workItem from="1579650167543" duration="6942000" />
-      <workItem from="1579708512863" duration="8875000" />
+      <workItem from="1579708512863" duration="13401000" />
     </task>
     <servers />
   </component>

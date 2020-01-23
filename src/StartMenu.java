@@ -56,12 +56,10 @@ public class StartMenu extends JFrame {
     	InputStream is = StartMenu.class.getResourceAsStream("frogger_font.ttf");
     	try {
     		font = Font.createFont(Font.TRUETYPE_FONT, is).deriveFont(14f);
-    	} catch(IOException ex) {
-    		System.out.println(ex);	
-    	} catch(FontFormatException ex) {
+    	} catch(IOException | FontFormatException ex) {
     		System.out.println(ex);	
     	}
-    }
+	}
 
 
     class ClickStart implements ActionListener {

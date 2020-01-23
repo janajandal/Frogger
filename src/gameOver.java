@@ -6,57 +6,29 @@ import java.io.*;
 import java.util.*;
 
 public class GameOver extends JFrame {
-    private JLayeredPane layeredPane = new JLayeredPane();
+    private JFrame layeredPane = new JFrame();
     private int highscore;
+    private JLabel gg;
     private JButton exit,playag;
     public GameOver(){
         super("Frogger");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        layeredPane.setPreferredSize(new Dimension(235, 244));
 
-        ImageIcon ggPic = new ImageIcon("gg.png");
-        // TODO: 2020-01-21 make it appear in the middle 
-        JLabel gg= new JLabel(ggPic);
-        gg.setBounds(0, 0, ggPic.getIconWidth(), ggPic.getIconHeight());
-        exit= new JButton();
-        exit.setLocation(45,196);
+        layeredPane.setPreferredSize(new Dimension(542,600));
+        // TODO: 2020-01-21 make it appear in the middle
+        gg.setBounds(0, 0, 542,600);
+        exit= new JButton("EXIT");
+        exit.setLocation(113,331);
         exit.addActionListener(new ClickStart());
-        playag= new JButton();
-        playag.setLocation(22,196);
+        playag= new JButton("PLAY AGAIN");
+        playag.setLocation(360,331);
         playag.addActionListener(new ClickStart());
         layeredPane.add(gg, 1);
         setContentPane(layeredPane);
         pack();
-
+        setVisible(true);
     }
-    public void write(int score){
-        try {
-            Scanner inFile = new Scanner(new BufferedReader(new FileReader("highScore.txt")));
-            if (inFile.next() == null) {
-                highscore=0;
-            } else {
-                highscore=inFile.nextInt();
-            }
-            inFile.close();
-            PrintWriter outFile = new PrintWriter(new BufferedWriter(new FileWriter("highScore.txt")));
-            if(highscore<score){
-                outFile.println(score);
-                highscore=score;
-            }
-            else {
-                outFile.println(highscore);
-            }
-            outFile.close();
 
-        } catch (IOException e) {
-            e.printStackTrace();
-
-        }
-
-    }
-    public String getScore(){
-        return String.valueOf(highscore);
-    }
     public void main(String[] args) {
         GameOver gg= new GameOver();
     }

@@ -12,4 +12,5 @@ public class Counter {
     public int left(){
         return current;
     }
+
 }
