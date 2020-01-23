@@ -79,9 +79,7 @@ class GamePanel extends JPanel implements KeyListener {
 		points = 0;
 		lvl = 1;
 		reset();
-		Random rand = new Random();
-		int pos = rand.nextInt(logs.size());
-		System.out.println(pos);
+		int pos= randint(0,logs.size()-1);
 		lady = new Lady(logs.get(pos));
 		highscore = checkHS();
 		gotLady=false;
@@ -107,7 +105,8 @@ class GamePanel extends JPanel implements KeyListener {
 	
 	public void checkProgress() {
 		if(lvl == 3) {
-			System.out.println("close the program you're done");
+			Win win= new Win();
+			setVisible(false);
 		}
 		if(empty.isEmpty()) {
 			lvl++;
@@ -218,11 +217,12 @@ class GamePanel extends JPanel implements KeyListener {
 
 		if(lady.checkCollision(player)){
 			points+=200;
-			lady.followFrog(player);
 			gotLady=true;
 		}
 		if(gotLady){
 			lady.followFrog(player);
+			lady.LadyJump();
+			lady.stayStill();
 		}
 		else{
 			lady.followLog();
@@ -313,7 +313,9 @@ class GamePanel extends JPanel implements KeyListener {
 		}
 
 		g.drawImage(back, 0, 0, 542, 600, null);
+
 		//lady.draw(g);
+
 		for(Car c : cars) {
 			c.draw(g);
 		}

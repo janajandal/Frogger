@@ -7,7 +7,7 @@ public class Lady {
     private double frame;
     private boolean onFrog;
     private Log log;
-    private Image[][] frogPics;
+    private Image[][][]frogPics;
     private Rectangle rect;
     private static final int UP = 0, DOWN = 1, RIGHT = 2, LEFT = 3, GREEN = 0, PURPLE = 1;
     public Lady(Log log){
@@ -25,7 +25,7 @@ public class Lady {
         }
         x=rand.nextInt(limitx);
         rect= new Rectangle(x,y,38,38);
-        frame=0;
+        frame=4;
         load();
     }
     public void followLog(){
@@ -40,21 +40,26 @@ public class Lady {
         return rect.intersects(frog.getRect());
     }
 
-    public void setOnFrog(boolean onFrog) {
-        this.onFrog = onFrog;
+    public void stayStill() {
+        frame = 0;
     }
 
+    public void LadyJump(){
+        frame = frame + 0.125 <= 4 ? frame + 0.125 : 4;
+    }
+
+
     public void draw(Graphics g) {
-        Image sprite = frogPics[dir][(int)Math.round(frame)];
+        Image sprite = frogPics[PURPLE][dir][(int)Math.round(frame)];
         g.drawImage(sprite, x, y, 38, 38, null);
     }
     public void load(){
-        frogPics= new Image[2][5];
+        frogPics= new Image[2][2][5];
         for(int i = 0; i < 2; i++){
             for(int j = 0; j < 5; j ++) {
                 String file = String.format("frog/purple/frog%d/frog%d.png", i, j);
                 Image img = new ImageIcon(file).getImage();
-                frogPics[i][j] = img.getScaledInstance(38 ,38 ,Image.SCALE_SMOOTH);
+                frogPics[PURPLE][i][j] = img.getScaledInstance(38 ,38 ,Image.SCALE_SMOOTH);
             }
         }
     }
