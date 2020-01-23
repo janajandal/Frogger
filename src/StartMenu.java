@@ -20,7 +20,7 @@ public class StartMenu extends JFrame {
     	w = backPic.getIconWidth();
     	h = backPic.getIconHeight();
     	
-		layeredPane.setPreferredSize(new Dimension(w, h));
+		layeredPane.setPreferredSize(new Dimension(542, 600));
     	
     	back = new JLabel(backPic);
     	back.setBounds(0, 0, w, h);
@@ -56,10 +56,12 @@ public class StartMenu extends JFrame {
     	InputStream is = StartMenu.class.getResourceAsStream("frogger_font.ttf");
     	try {
     		font = Font.createFont(Font.TRUETYPE_FONT, is).deriveFont(14f);
-    	} catch(IOException | FontFormatException ex) {
+    	} catch(IOException ex) {
+    		System.out.println(ex);	
+    	} catch(FontFormatException ex) {
     		System.out.println(ex);	
     	}
-	}
+    }
 
 
     class ClickStart implements ActionListener {

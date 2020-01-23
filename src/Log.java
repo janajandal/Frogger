@@ -1,31 +1,32 @@
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Random;
 
 
 public class Log {
     private static final int LEFT = -1, RIGHT = 1;
-	private int dir, limit, replace, speed, w, h;
+	private int dir, lane, limit, replace, speed, w, h;
 	private Image pic;
     private  Rectangle rect;
 
-    public Log(int lane) {
+    public Log(int lvl, int lane, int x) {
     	String file = String.format("river/%d.png", lane);
     	pic = new ImageIcon(file).getImage();
     	w = pic.getWidth(null);
     	h = pic.getHeight(null);
     	
-    	if(lane % 2==0) {
-    		dir = RIGHT;
-    		replace = 0;
-            limit = 488;
-    	} else {
+    	if(lane%2 == 0) {
     		dir = LEFT;
-    		replace = 488;
-            limit = 0;
+    		replace = 542;
+            limit = -w;
+    	} else {
+    		dir = RIGHT;
+    		replace = -w;
+    		limit = 542;
     	}
-    	speed = 1;
-    	rect = new Rectangle(replace, 254 - lane*38, w, h);
+    	speed = lvl;
+    	rect = new Rectangle(x, 482 - lane*38, w, h);
     }
     
     public int getX() {
@@ -35,25 +36,14 @@ public class Log {
     public int getY() {
     	return rect.y;
     }
-
-    public int getSpeed() {
-        return speed;
-    }
-    public int getDir(){
-        return dir;
-    }
-
+    
     public void move() {
     	rect.setLocation(rect.x + speed*dir, rect.y);
         if((rect.x > limit && dir == RIGHT) || (rect.x < limit && dir == LEFT)){
             rect.x = replace;
         }
     }
-
-    public Rectangle getRect() {
-        return rect;
-    }
-
+    
     public boolean checkCollision(Frog player){
     	return rect.intersects(player.getRect());
     }
@@ -61,4 +51,16 @@ public class Log {
     public void draw(Graphics g){
         g.drawImage(pic, rect.x, rect.y, w, h, null);
     }
+
+	public int getSpeed() {
+    	return speed;
+	}
+
+	public Rectangle getRect() {
+    	return rect;
+	}
+
+	public int getDir() {
+    	return dir;
+	}
 }

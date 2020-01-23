@@ -1,18 +1,18 @@
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 
-public class Car {
+public class Turtle {
     private static final int LEFT = -1, RIGHT = 1;
 	private int dir, lane, limit, replace, speed, w, h;
-	private Image pic;
+	private double frame;
+	private Image[] pics;
     private  Rectangle rect;
 
-    public Car(int lvl, int lane, int x) {
-    	String file = String.format("road/%d.png", lane);
-    	pic = new ImageIcon(file).getImage();
-    	w = pic.getWidth(null);
-    	h = pic.getHeight(null);
+    public Turtle(int lvl, int lane, int x) {
+    	w = 38;
+    	h = 38;
     	
     	if(lane%2 == 0) {
     		dir = LEFT;
@@ -21,18 +21,29 @@ public class Car {
     	} else {
     		dir = RIGHT;
     		replace = -w;
-            limit = 542;
+    		limit = 542;
     	}
+    	
+    	frame = 0;
+    	
+    	
+    	pics = new Image[5];
+    	for(int i = 0; i < pics.length; i++) {
+	    	String file = String.format("river/swim%d/turtle%d.png", dir, i);
+			Image img = new ImageIcon(file).getImage();
+			pics[i] = img.getScaledInstance(w, h,Image.SCALE_SMOOTH);
+    	}
+    	
     	speed = lvl;
-    	rect = new Rectangle(x, 482 - lane*38, w, h);
+    	rect = new Rectangle(x, 482 - lane*h, w, h);
     }
     
     public void move() {
+        frame = frame + 0.025 <= 4 ? frame + 0.025 : 0;
     	rect.setLocation(rect.x + speed*dir, rect.y);
         if((rect.x > limit && dir == RIGHT) || (rect.x < limit && dir == LEFT)){
             rect.x = replace;
         }
-    	
     }
     
     public boolean checkCollision(Frog player){
@@ -40,6 +51,6 @@ public class Car {
     }
 
     public void draw(Graphics g){
-        g.drawImage(pic, rect.x, rect.y, w, h, null);
+        g.drawImage(pics[(int)Math.round(frame)], rect.x, rect.y, w, h, null);
     }
 }
