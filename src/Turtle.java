@@ -1,3 +1,6 @@
+//FILENAME: Turtle.java
+//BY: Jana Jandal Alrifai and Catherine Sun
+//SUMMARY: turtles help transport frog across the river, this program includes move,position and collision
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
@@ -5,27 +8,27 @@ import java.util.ArrayList;
 
 public class Turtle {
     private static final int LEFT = -1, RIGHT = 1;
-	private int dir, lane, limit, replace, speed, w, h;
-	private double frame;
-	private Image[] pics;
+    private int dir, lane, limit, replace, speed, w, h;
+    private double frame;
+    private Image[] pics;
     private  Rectangle rect;
-
+    //Turtle is similiar to other objexts
     public Turtle(int lvl, int lane, int x) {
     	w = 28;
     	h = 38;
     	
     	if(lane%2 == 0) {
-    		dir = LEFT;
-    		replace = 542;
+       	    dir = LEFT;
+    	    replace = 542;
             limit = -w;
     	} else {
-    		dir = RIGHT;
-    		replace = -w;
-    		limit = 542;
+    	    dir = RIGHT;
+    	    replace = -w;
+    	    limit = 542;
     	}
     	
     	frame = 0;
-    	
+    	//gets different frames for different turtle movment
     	pics = new Image[5];
     	for(int i = 0; i < pics.length; i++) {
 	    	String file = String.format("river/swim%d/turtle%d.png", dir, i);
@@ -42,7 +45,7 @@ public class Turtle {
     }
     
     public void move() {
-        frame = frame + 0.025 <= 4 ? frame + 0.025 : 0;
+        frame = frame + 0.025 <= 4 ? frame + 0.025 : 0; //moves frame when moving the turtle
     	rect.setLocation(rect.x + speed*dir, rect.y);
         if((rect.x > limit && dir == RIGHT) || (rect.x < limit && dir == LEFT)){
             rect.x = replace;
