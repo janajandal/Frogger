@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.Iterator;
 import java.io.*;
+import java.io.*;
+import javax.sound.midi.*;
 
 
 public class Frogger extends JFrame implements ActionListener {
@@ -67,6 +69,7 @@ class GamePanel extends JPanel implements KeyListener {
 	private Fly fly;
 	
 	private Counter counter;
+	private static Sequencer midiPlayer;
 	
 	public GamePanel(Frogger m) {
 		mainFrame = m;
@@ -97,6 +100,24 @@ class GamePanel extends JPanel implements KeyListener {
 		reset();
 	}
 	
+   
+   	public static void startMidi(String midFilename) {
+      		try {
+         		File midiFile = new File(midFilename);
+         		Sequence song = MidiSystem.getSequence(midiFile);
+       			midiPlayer = MidiSystem.getSequencer();
+       			midiPlayer.open();
+			midiPlayer.setSequence(song);
+			midiPlayer.setLoopCount(100);//repeat 100 times
+			midiPlayer.start();
+     		 } catch (MidiUnavailableException e) {
+         		e.printStackTrace();
+      		} catch (InvalidMidiDataException e) {
+       			e.printStackTrace();
+      		} catch (IOException e) {
+       	       	        e.printStackTrace();
+      		}
+   	}	
 	public void reset() {
 		player = new Frog(w/2, 520);
 		counter = new Counter(lvl*2000);
@@ -141,6 +162,7 @@ class GamePanel extends JPanel implements KeyListener {
 		endMsg = lvl == 3 ? "YOU WON!" : "GAME OVER";
 		if(!pause) {
 			counter.countDown();
+			startMidi("frogger-music.mid");
 		}
 		if(lives == 0) {
 			writeScore();
