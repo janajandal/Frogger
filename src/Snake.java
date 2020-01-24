@@ -1,3 +1,9 @@
+/*
+FILE NAME:Snake.Java
+BY:Jana Jandal Alrifai, Catherine Sun
+SUMMARY:Snake Objects on screen contains frames, move and collision
+ */
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
@@ -11,6 +17,7 @@ public class Snake {
     private  Rectangle rect;
 
     public Snake() {
+    	//defines fields
     	pics = new Image[5];
     	for(int i = 0; i < pics.length; i++) {
 	    	String file = String.format("road/snake%d.png", i);
@@ -27,7 +34,7 @@ public class Snake {
     	speed = 3;
     	rect = new Rectangle(-w, 482 - 5*38, w, h);
     }
-    
+    //has the same concept of movment from the other Obstacles
     public void move() {
         frame = frame + 0.025 <= 4 ? frame + 0.025 : 0;
     	rect.setLocation(rect.x + speed*dir, rect.y);

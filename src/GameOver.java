@@ -1,3 +1,9 @@
+/*
+FILE NAME:GameOver.Java
+BY:Jana Jandal Alrifai, Catherine Sun
+SUMMARY:a Jframe displayed when player loses all lives
+ */
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -13,6 +19,7 @@ public class GameOver extends JFrame {
     private int w, h;
 
     public GameOver() {
+        //sets up the panel with the same background picture on all stages of the game
         super("Frogger");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -27,13 +34,14 @@ public class GameOver extends JFrame {
         layeredPane.add(back, JLayeredPane.DEFAULT_LAYER);
 
         gameFont();
+        //displays the Gameover image and addes it to the panel
         titlePic = new ImageIcon("GameOver.png");
         title = new JLabel(titlePic);
         w = w/2 - titlePic.getIconWidth()/2;
         h = 140;
         title.setBounds(w, h, titlePic.getIconWidth(), titlePic.getIconHeight());
         layeredPane.add(title, JLayeredPane.MODAL_LAYER);
-
+        //sets up buttons with mouse listener, they are used to either start the game again or exit
         play= new JButton("PLAY AGAIN");
         play.setFont(font);
         play.setForeground(Color.white);
@@ -76,12 +84,12 @@ public class GameOver extends JFrame {
     class ClickStart implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent evt) {
+            //checks the source of the event
             if(evt.getSource()==exit){
-                System.out.println("bye");
-                System.exit(0);
+                System.exit(0); //closes the program
             }
             else {
-
+                //starts the game again
                 Frogger frame= new Frogger();
                 frame.start();
                 setVisible(false);
@@ -92,6 +100,7 @@ public class GameOver extends JFrame {
 
     class HoverColour implements MouseListener {
         public void mouseEntered(MouseEvent e) {
+            //changes the colour if hovered
             if(e.getSource()==exit){
                 exit.setForeground(Color.GREEN);
             }
@@ -102,6 +111,7 @@ public class GameOver extends JFrame {
         }
 
         public void mouseExited(MouseEvent e) {
+            //selects a button
             if(e.getSource()==exit){
                 exit.setForeground(Color.WHITE);
             }

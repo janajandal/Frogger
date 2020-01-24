@@ -1,3 +1,9 @@
+/*
+FILE NAME:Win.Java
+BY:Jana Jandal Alrifai, Catherine Sun
+SUMMARY:The car objects on screen, it contains collision,move and frames
+ */
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -14,7 +20,7 @@ public class Car {
     	w = pic.getWidth(null);
     	h = pic.getHeight(null);
     	
-    	if(lane%2==0) {
+    	if(lane%2==0) { //determines speed and limit by lane
     		dir = LEFT;
     		replace = 542;
             limit = -w;
@@ -26,7 +32,7 @@ public class Car {
     	speed = lvl;
     	rect = new Rectangle(x, 482 - lane*38, w, h);
     }
-    
+    //has the same concept of movement as other Obstacles
     public void move() {
     	rect.setLocation(rect.x + speed*dir, rect.y);
         if((rect.x > limit && dir == RIGHT) || (rect.x < limit && dir == LEFT)){

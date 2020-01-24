@@ -1,8 +1,13 @@
+/*
+FILE NAME:Win.Java
+BY:Jana Jandal Alrifai, Catherine Sun
+SUMMARY:a Jframe displayed when all 3 levels of Frogger are completed
+ */
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
-
 
 public class Win extends JFrame {
     private JLayeredPane layeredPane = new JLayeredPane();
@@ -11,7 +16,7 @@ public class Win extends JFrame {
     private JButton exit,play;
     private Font font;
     private int w, h;
-
+    //used GameOver as a template, no new comments here
     public Win() {
         super("Frogger");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -76,6 +81,7 @@ public class Win extends JFrame {
     class ClickStart implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent evt) {
+
             if(evt.getSource()==exit){
                 System.out.println("bye");
                 System.exit(0);

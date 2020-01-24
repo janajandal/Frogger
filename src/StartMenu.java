@@ -1,3 +1,9 @@
+/*
+FILE NAME:StartMenu.Java
+BY:Jana Jandal Alrifai, Catherine Sun
+SUMMARY:a Jframe displayed when you run the program that works as an Introduction page
+ */
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -13,6 +19,7 @@ public class StartMenu extends JFrame {
 	private int w, h;
 
     public StartMenu() {
+    	//sets up the panel to be the same as the others panels in Frogger
     	super("Frogger");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -21,13 +28,13 @@ public class StartMenu extends JFrame {
     	h = 600;
     	
 		layeredPane.setPreferredSize(new Dimension(w, h));
-    	
+		//addes the background image to the panel
     	back = new JLabel(backPic);
     	back.setBounds(0, 0, w, h);
     	layeredPane.add(back, JLayeredPane.DEFAULT_LAYER);
 		
 		gameFont();
-		
+		//makes a Jbutton that start the game
     	play = new JButton("CLICK HERE TO START");
     	play.setFont(font);
     	play.setForeground(Color.white);
@@ -37,6 +44,7 @@ public class StartMenu extends JFrame {
 		play.setBorderPainted(false);
 		play.addMouseListener(new HoverColour());
     	play.addActionListener(new ClickStart());
+    	//adds the button the pane
     	layeredPane.add(play, JLayeredPane.PALETTE_LAYER);
     	
     	titlePic = new ImageIcon("title.png");
@@ -73,6 +81,7 @@ public class StartMenu extends JFrame {
     
     
     class HoverColour implements MouseListener {
+    	//turns green if hovered
     	public void mouseEntered(MouseEvent e) {
     		play.setForeground(Color.green);
     	}

@@ -1,3 +1,9 @@
+/*
+FILE NAME:Lady.Java
+BY:Jana Jandal Alrifai, Catherine Sun
+SUMMARY:a Frog Object that allows for bonus points includes movement,frames and collision
+ */
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.Random;

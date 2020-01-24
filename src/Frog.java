@@ -1,3 +1,9 @@
+/*
+FILE NAME:Frog.Java
+BY:Jana Jandal Alrifai, Catherine Sun
+SUMMARY: Frog uses to play, it contains the frames, movement and pos;
+ */
+
 import javax.swing.*;
 import java.awt.*;
 

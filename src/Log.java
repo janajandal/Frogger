@@ -1,3 +1,9 @@
+/*
+FILE NAME:Log.Java
+BY:Jana Jandal Alrifai, Catherine Sun
+SUMMARY:Log objects in the water includes frame, move and collision
+ */
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
@@ -16,7 +22,7 @@ public class Log {
     	w = pic.getWidth(null);
     	h = pic.getHeight(null);
     	
-    	if(lane%2 == 0) {
+    	if(lane%2 == 0) { //determines direction and limit based on lane
     		dir = LEFT;
     		replace = 542;
             limit = -w;
@@ -25,19 +31,12 @@ public class Log {
     		replace = -w;
     		limit = 542;
     	}
-    	speed = lvl;
-    	rect = new Rectangle(x, 482 - lane*38, w, h);
+    	speed = lvl; //changes the speed in each level
+    	rect = new Rectangle(x, 482 - lane*38, w, h); //makes a rectangle for the log
     }
+
     
-    public int getX() {
-    	return rect.x;
-    }
-    
-    public int getY() {
-    	return rect.y;
-    }
-    
-    public void move() {
+    public void move() { //keeps the logs moving on and off screen in a loop
     	rect.setLocation(rect.x + speed*dir, rect.y);
         if((rect.x > limit && dir == RIGHT) || (rect.x < limit && dir == LEFT)){
             rect.x = replace;
@@ -46,12 +45,13 @@ public class Log {
     
     public boolean checkCollision(Frog player){
     	return rect.intersects(player.getRect());
-    }
+    } //checks if intersects with player
 
     public void draw(Graphics g){
         g.drawImage(pic, rect.x, rect.y, w, h, null);
-    }
+    } //draws the log in diff pos
 
+	//getters and setters used in Lady
 	public int getSpeed() {
     	return speed;
 	}
